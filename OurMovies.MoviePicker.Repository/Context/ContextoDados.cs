@@ -1,4 +1,4 @@
-﻿using KabumCrawling.Domain.Models;
+﻿using OurMovies.MoviePicker.Domain.Models;
 using OurMovies.MoviePicker.Repository.Context.Configuration;
 using System.Data.Entity;
 using System.Linq;
@@ -13,10 +13,8 @@ namespace OurMovies.MoviePicker.Repository.Context
         }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-            builder.Configurations.Add(new NotificacaoConfiguration());
-            builder.Configurations.Add(new DestinarioConfiguration());
+            builder.Configurations.Add(new SenhaConfiguration());
         }
-        public virtual DbSet<NotificacaoProduto> NotificacaoProdutos { get; set; }
-        public virtual DbSet<Destinario> Destinarios { get; set; }
+        public virtual DbSet<SenhaAcesso> SenhasAcesso { get; set; }
     }
 }

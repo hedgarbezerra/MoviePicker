@@ -10,8 +10,7 @@ namespace OurMovies.MoviePicker.Utils
     public static class Criptografia
     {
 
-        public static string ComputeHash(string plainText,
-                                     byte[] saltBytes)
+        public static string ComputeHash(string plainText, byte[] saltBytes = null)
         {
             if (saltBytes == null)
             {
