@@ -14,7 +14,11 @@ namespace OurMovies.MoviePicker.Repository.Context
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             builder.Configurations.Add(new SenhaConfiguration());
+            builder.Configurations.Add(new FilmesConfiguration());
+            builder.Configurations.Add(new CategoriasConfiguration());
         }
         public virtual DbSet<SenhaAcesso> SenhasAcesso { get; set; }
+        public virtual DbSet<Filme> Filmes { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
     }
 }

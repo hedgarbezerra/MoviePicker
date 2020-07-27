@@ -11,22 +11,41 @@ namespace OurMovies.MoviePicker.Repository.Context.Configuration
     {
         protected override void ConfigurateFields()
         {
-            throw new NotImplementedException();
+            Property(x => x.Id)
+                .HasColumnName("ID")
+                .HasColumnType("int")
+                .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+
+            Property(x => x.Nome)
+                .HasColumnName("NOME")
+                .HasColumnType("varchar")
+                .HasMaxLength(255);
+
+            Property(x => x.DtAdicionado)
+                .HasColumnName("DT_ADICIONADO")
+                .HasColumnType("datetime");
         }
 
         protected override void ConfigurateFK()
         {
-            throw new NotImplementedException();
+            HasMany(x => x.Filmes)
+                .WithMany(x => x.Categorias)
+                .Map(x =>
+                {
+                    x.MapLeftKey("REF_ID_CATEGORIA");
+                    x.MapRightKey("REF_ID_FILME");
+                    x.ToTable("TB_FILMES_CATEGORIA");
+                });
         }
 
         protected override void ConfiguratePK()
         {
-            throw new NotImplementedException();
+            HasKey(x => x.Id);
         }
 
         protected override void ConfigurateTableName()
         {
-            throw new NotImplementedException();
+            ToTable("TB_CATEGORIAS");
         }
     }
 }

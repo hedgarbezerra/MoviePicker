@@ -16,6 +16,12 @@ namespace OurMovies.MoviePicker.Repository.Context.Configuration
                 .HasColumnType("int")
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
+            Property(x => x.Usuario)
+               .HasColumnName("USUARIO")
+               .HasMaxLength(255)
+               .IsRequired()
+               .HasColumnType("varchar");
+
             Property(x => x.Senha)
                 .HasColumnName("SENHA")
                 .HasMaxLength(255)
@@ -24,7 +30,7 @@ namespace OurMovies.MoviePicker.Repository.Context.Configuration
 
             Property(x => x.DtCriacao)
                 .HasColumnName("DT_CRIACAO")
-                .HasColumnType("varchar");
+                .HasColumnType("datetime");
         }
 
         protected override void ConfigurateFK()

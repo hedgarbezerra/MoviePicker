@@ -40,7 +40,7 @@ namespace OurMovies.MoviePicker.Repository.Repositories
         }
         public virtual IEnumerable<T> ListarNoTracking()
         {
-            return _context.Set<T>().AsNoTracking().AsParallel();
+            return _context.Set<T>().AsNoTracking();
         }
         public virtual IEnumerable<T> Listar(Expression<Func<T, bool>> expression = null)
         {
