@@ -17,9 +17,17 @@ namespace OurMovies.MoviePicker.MVC
             bundles.Add(new ScriptBundle("~/bundles/vue").Include(
                       "~/Scripts/vue.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/vuetify").Include(
+                      "~/Scripts/vuetify.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/veevalidate").Include(
+                      "~/Scripts/vee-validate.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/vuetifycss").Include(
+                     @"~/Scripts/vuetify.min.css"));
         }
     }
 }

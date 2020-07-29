@@ -1,30 +1,60 @@
-﻿using System;
+﻿using OurMovies.MoviePicker.Domain.DTO;
+using OurMovies.MoviePicker.Domain.Models;
+using OurMovies.MoviePicker.Services.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace OurMovies.MoviePicker.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        [Authorize]
+        public ActionResult CadastrarFilme()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [Authorize]
+        public ActionResult CadastrarCategoria()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(DTOUsuario usuario)
+        {
+            AutenticacaoService authService = new AutenticacaoService();
+
+            SenhaAcesso usuarioLogado;
+
+            if(authService.Autenticar(usuario, out usuarioLogado))
+            {
+                FormsAuthentication.SetAuthCookie(usuarioLogado.Usuario, true);
+
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
     }
 }

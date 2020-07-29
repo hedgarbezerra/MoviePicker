@@ -42,9 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AutenticacaoService.cs" />
+    <Compile Include="Services\CategoriasService.cs" />
+    <Compile Include="Services\FilmesService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\OurMovies.MoviePicker.Domain\OurMovies.MoviePicker.Domain.csproj">
+      <Project>{B97F08AD-3EFB-43B5-A4B0-095EA88AE641}</Project>
+      <Name>OurMovies.MoviePicker.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OurMovies.MoviePicker.Repository\OurMovies.MoviePicker.Repository.csproj">
+      <Project>{976F46FF-A9A9-4BBD-BC73-B05519EDD0E2}</Project>
+      <Name>OurMovies.MoviePicker.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

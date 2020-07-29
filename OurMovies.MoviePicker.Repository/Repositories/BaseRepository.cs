@@ -40,7 +40,20 @@ namespace OurMovies.MoviePicker.Repository.Repositories
         }
         public virtual IEnumerable<T> ListarNoTracking()
         {
+            _context.Configuration.ProxyCreationEnabled = false;
+
             return _context.Set<T>().AsNoTracking();
+        }
+        public virtual IEnumerable<T> ListarNoTracking(Expression<Func<T, bool>> expression = null)
+        {
+            _context.Configuration.ProxyCreationEnabled = false;
+
+            var dados = _context.Set<T>().AsNoTracking().AsQueryable();
+            
+            if (expression != null)
+                dados = dados.Where(expression);
+
+            return dados.AsEnumerable();
         }
         public virtual IEnumerable<T> Listar(Expression<Func<T, bool>> expression = null)
         {

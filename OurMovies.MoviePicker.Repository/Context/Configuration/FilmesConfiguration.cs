@@ -27,6 +27,11 @@ namespace OurMovies.MoviePicker.Repository.Context.Configuration
                 .HasColumnType("varchar")
                 .IsOptional();
 
+            Property(x => x.Assistido)
+               .HasColumnName("ASSISTIDO")
+               .HasColumnType("BIT")
+               .IsRequired();
+
             Property(x => x.DtAdicionado)
                 .HasColumnName("DT_ADICIONADO")
                 .HasColumnType("datetime")

@@ -16,15 +16,24 @@ namespace OurMovies.MoviePicker.Repository.Repositories
             else
                 _context = new ContextoDados();
     }
-    public bool Login(SenhaAcesso senha, out SenhaAcesso senhaAutenticada)
+
+    public bool Login(SenhaAcesso senha, out SenhaAcesso usuarioLogado)
         {
             var usuario = _context.SenhasAcesso.Where(x => x.Usuario == senha.Usuario).FirstOrDefault();
 
+            usuarioLogado = null;
+
+            if (usuario == null)
+                return false;
+
             var senhaCripto = Criptografia.ComputeHash(senha.Senha);
 
-            senhaAutenticada = usuario;
+            var logado = Criptografia.VerifyHash(senha.Senha, usuario.Senha);
 
-            return Criptografia.VerifyHash(senha.Senha, usuario.Senha);
+            if (logado)
+                usuarioLogado = usuario;
+
+            return logado;
         }
 
         public override SenhaAcesso Inserir(SenhaAcesso obj)
