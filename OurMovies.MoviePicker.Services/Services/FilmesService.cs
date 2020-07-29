@@ -62,6 +62,14 @@ namespace OurMovies.MoviePicker.Services.Services
             return objCtx;
         }
 
+        public void DarNotaFilme(int idFilme, int nota)
+        {
+            _repo = new FilmesRepository(_contexto);
+
+            _repo.DarNota(idFilme, nota);
+            _repo.Savechanges();
+        }
+
 
         public void AssistirFilme(Filme filme)
         {            

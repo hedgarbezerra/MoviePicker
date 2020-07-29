@@ -45,6 +45,16 @@ namespace OurMovies.MoviePicker.Repository.Repositories
                 filmeCtx.Assistido = estado;
             }
         }
+        public void DarNota(int idFilme, int nota)
+        {
+            var filmeCtx = _context.Filmes.Find(idFilme);
+
+            if (filmeCtx != null)
+            {
+                filmeCtx.Assistido = true;
+                filmeCtx.Nota = nota;
+            }
+        }
         public List<Filme> ListarTodos()
         {
             _context.Configuration.ProxyCreationEnabled = false;

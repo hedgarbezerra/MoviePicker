@@ -15,19 +15,29 @@ namespace OurMovies.MoviePicker.MVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/vue").Include(
-                      "~/Scripts/vue.js"));
+                      "~/Scripts/vue.js",
+                      "~/Scripts/vee-validate-locale-pt_Br.js",
+                      "~/Scripts/vee-validate.full.min.js",
+                      "~/Scripts/axios.min.js"
+                      ));
 
-            bundles.Add(new ScriptBundle("~/bundles/vuetify").Include(
-                      "~/Scripts/vuetify.js"));
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+                      "~/Scripts/moment-with-locales.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/veevalidate").Include(
-                      "~/Scripts/vee-validate.js"));
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                      "~/Content/js/login.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                      "~/Content/js/main.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/uikit").Include(
+                      "~/Scripts/uikit.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/vuetifycss").Include(
-                     @"~/Scripts/vuetify.min.css"));
+            bundles.Add(new StyleBundle("~/Content/uikit").Include(
+                     "~/Content/css/uikit.min.css"));
         }
     }
 }

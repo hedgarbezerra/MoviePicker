@@ -146,20 +146,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\uikit.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <Content Include="Content\js\login.js" />
+    <Content Include="Content\js\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\vee-validate.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\uikit-icons.min.js" />
+    <Content Include="Scripts\uikit.min.js" />
+    <Content Include="Scripts\vee-validate-locale-pt_Br.js" />
+    <Content Include="Scripts\vee-validate.full.min.js" />
     <Content Include="Scripts\vue.js" />
-    <Content Include="Scripts\vue.min.js" />
-    <Content Include="Scripts\vuetify.js" />
-    <Content Include="Scripts\vuetify.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -178,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

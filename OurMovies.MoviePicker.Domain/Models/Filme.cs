@@ -12,6 +12,7 @@ namespace OurMovies.MoviePicker.Domain.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public int Nota { get; set; }
         public bool Assistido { get; set; }
         public DateTime DtAdicionado { get; set; }
         public virtual ICollection<Categoria> Categorias { get; set; }

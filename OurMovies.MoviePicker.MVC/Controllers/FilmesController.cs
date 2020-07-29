@@ -173,6 +173,8 @@ namespace OurMovies.MoviePicker.MVC.Controllers
                 return InternalServerError(ex);
             }
         }
+
+
         [HttpPost]
         [Route("Assistir")]
         public IHttpActionResult Assistir([FromBody] Filme filme)
@@ -186,6 +188,29 @@ namespace OurMovies.MoviePicker.MVC.Controllers
                 {
                     data = new List<Filme>(),
                     message = "Filme marcado como assistido.",
+                    success = true
+                });
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("Avaliar")]
+        public IHttpActionResult Avaliar([FromBody] Filme filme)
+        {
+            try
+            {
+                FilmesService service = new FilmesService();
+                service.DarNotaFilme(filme.Id, filme.Nota);
+
+                return Ok(new DefaultResponse<Filme>
+                {
+                    data = new List<Filme>(),
+                    message = $"Foi atribuida ao filme {filme.Nome} a nota {filme.Nota}.",
                     success = true
                 });
 
