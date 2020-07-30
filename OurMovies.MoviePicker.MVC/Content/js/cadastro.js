@@ -24,7 +24,7 @@
                 if(res.success)
                     window.location.replace('Login');
                 else
-                    app.$refs.formLogin.refs.confirmacao.setErrors([res.message]);
+                    toastMessage(res.message, TOASTMETHOD.ERROR, 'error_outline');
                     
                 this.isLoading = false;
             }).catch(err => {
@@ -32,18 +32,5 @@
                 toastMessage('Não foi possível cadastrar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
             });
         }
-    },
-    computed: {
-
-    }, 
-    watch:{
-        'usuario.senha':function(newVal, oldVal){
-            if(newVal!= oldVal)
-                app.$refs.formCadastro.refs.confirmacao.setErrors([]);
-        },
-        'usuario.login':function(newVal, oldVal){
-            if(newVal!= oldVal)
-                app.$refs.formCadastro.refs.confirmacao.setErrors([]);
-        }
-    }    
+    }
 });

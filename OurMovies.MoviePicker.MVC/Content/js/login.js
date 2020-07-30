@@ -24,20 +24,13 @@
                 if(res.success)
                     window.location.replace('Index');
                 else
-                    app.$refs.formLogin.refs.confirmacao.setErrors([res.message]);
-                    
+                    toastMessage(res.message, TOASTMETHOD.ERROR, 'error_outline');
+                
                 this.isLoading = false;
+            }).catch(err => {
+                this.isLoading = false;
+                toastMessage('Não foi possível cadastrar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
             });
         }
-    },
-    watch:{
-        'usuario.senha':function(newVal, oldVal){
-            if(newVal!= oldVal)
-                app.$refs.formLogin.refs.confirmacao.setErrors([]);
-        },
-        'usuario.usuario':function(newVal, oldVal){
-            if(newVal!= oldVal)
-                app.$refs.formLogin.refs.confirmacao.setErrors([]);
-        }
-    }    
+    }
 });

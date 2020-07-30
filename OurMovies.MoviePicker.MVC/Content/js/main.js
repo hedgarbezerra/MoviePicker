@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
 const REQUESTMETHOD = Object.freeze({ "GET": 1, "POST": 2, "PUT": 3, "DELETE": 4 });
 const TOASTMETHOD = Object.freeze({ "ERROR": 1, "SHOW": 2, "SUCCESS": 3, "INFO": 4 });
 const toastOptions = {
-    position: 'top-right',
+    position: 'bottom-right',
     duration: 3000,
     keepOnHover: true,
     iconPack: 'material',
