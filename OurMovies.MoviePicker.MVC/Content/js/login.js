@@ -21,15 +21,17 @@
             };
 
             fazerRequest('https://localhost:44340/api/Auth/Login', REQUESTMETHOD.POST, usuarioLogin).then(res => {
-                if(res.success)
-                    window.location.replace('Index');
+                if(res.success){
+                    toastMessage(res.message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
+                    setTimeout(()=> window.location.replace('Index'), 2500)
+                }
                 else
                     toastMessage(res.message, TOASTMETHOD.ERROR, 'error_outline');
                 
                 this.isLoading = false;
             }).catch(err => {
                 this.isLoading = false;
-                toastMessage('Não foi possível cadastrar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
+                toastMessage('Não foi possível conectar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
             });
         }
     }

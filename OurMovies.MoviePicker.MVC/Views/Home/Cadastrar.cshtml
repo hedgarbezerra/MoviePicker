@@ -15,11 +15,19 @@
                         <span class="form-text text-muted has-error">{{ errors[0] }}</span>
                     </validation-provider>
                 </div>
-    
+                
                 <div class="form-group">
                     <validation-provider name="senha" vid="senhaCadastro" v-slot="{ errors }"> 
                         <label for="senhaCadastro">senha</label>   
                         <input placeholder="sua senha" class="form-control" id="senhaCadastro" v-model="usuario.senha" type="password" v-bind:class="{'has-error': errors[0]}"
+                            minlength="8" maxlength="20"  required>
+                        <span class="form-text text-muted has-error">{{ errors[0] }}</span>
+                    </validation-provider>
+                </div>
+                <div class="form-group">
+                    <validation-provider name="senha" vid="senhaCadastroConfirmacao" rules="confirmed:senhaCadastro" v-slot="{ errors }"> 
+                        <label for="senhaCadastro">confirmar senha</label>   
+                        <input placeholder="sua senha" class="form-control" id="senhaCadastroConfirmacao" v-model="usuario.senhaConfirmacao" type="password" v-bind:class="{'has-error': errors[0]}"
                             minlength="8" maxlength="20"  required>
                         <span class="form-text text-muted has-error">{{ errors[0] }}</span>
                     </validation-provider>

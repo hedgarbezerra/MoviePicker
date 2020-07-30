@@ -30,7 +30,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
                 {
                     var response = new DefaultResponse<SenhaAcesso>
                     {
-                        message = "Cadastrado com sucesso.",
+                        message = "Cadastrado efetuado com sucesso.",
                         data = new List<SenhaAcesso>(),
                         success = true
                     };
@@ -67,7 +67,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(usuarioLogado.Usuario, true);
                     response.success = true;
-                    response.message = "Conectado com sucesso.";
+                    response.message = "Conectado(a) com sucesso.";
                     return Ok(response);
                 }
                 else

@@ -4,7 +4,8 @@
         isLoading: false,
         usuario: {
             senha: '',
-            login: ''
+            login: '',
+            confirmacaoSenha: ''
         }
     },
     methods: {
@@ -21,8 +22,10 @@
             };
            
             fazerRequest('https://localhost:44340/api/Auth/Cadastrar', REQUESTMETHOD.POST, usuarioLogin).then(res => {
-                if(res.success)
-                    window.location.replace('Login');
+                if(res.success){
+                    toastMessage(res.message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
+                    setTimeout(()=> window.location.replace('Login'), 2500)
+                }
                 else
                     toastMessage(res.message, TOASTMETHOD.ERROR, 'error_outline');
                     

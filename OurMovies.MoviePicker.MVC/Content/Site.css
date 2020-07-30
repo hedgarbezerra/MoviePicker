@@ -42,6 +42,18 @@ button, input, optgroup, select, textarea{
     font-family: Poppins, Roboto !important;
 }
 
+.input-group-text {
+    pointer-events: all !important;
+    background-color: inherit !important;
+    border-radius: .25rem !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.input-group-append {
+    margin-left: -5px !important;
+}
+
 .my-loader{
     position: fixed !important;
     top: 40%;
@@ -68,7 +80,7 @@ button, input, optgroup, select, textarea{
 
 .form-control:focus {
     background-color: var(--amarelo) !important;
-    opacity: 0.2 !important;
+    opacity: 0.8 !important;
 }
 
 
