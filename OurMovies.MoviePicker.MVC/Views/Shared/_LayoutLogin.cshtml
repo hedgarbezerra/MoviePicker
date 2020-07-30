@@ -17,16 +17,15 @@
     <script src="http://localhost:8098"></script>
 </head>
 <body>
-   @Html.Partial("~/Views/Shared/_Navbar.cshtml")
     <div id="vueApp" v-cloak>
         <div class="loader-holder" v-if="isLoading">            
-            <bounce-loader class="my-loader" :color="'#bada55'" :loading="isLoading" :size="80" :sizeUnit="'px'"></bounce-loader>
+            <pacman-loader class="my-loader" :color="'#bada55'" :loading="isLoading" :size="80" :sizeUnit="'px'"></pacman-loader>
         </div>
-        <div id="base" class="container">
-            <bar-loader class="my-loader" :color="#bada55" :loading="loading" :size="150" :sizeUnit="px"></bar-loader>
+        <div lass="container">
             @RenderBody()
         </div>
     </div>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

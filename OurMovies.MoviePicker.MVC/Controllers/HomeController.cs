@@ -30,9 +30,28 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
+
         [AllowAnonymous]
         public ActionResult Login()
         {
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Cadastrar()
+        {
+            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return RedirectToAction("Index");
             return View();
         }
 

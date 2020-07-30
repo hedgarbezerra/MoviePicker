@@ -1,1 +1,94 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Poppins:wght@300;400&family=Roboto:ital,wght@0,400;1,700&display=swap');
+:root{
+    --roxo: #491D49;
+    --amarelo: #CBA135;
+    --verde: #7FEFBD;
+    --branco: #F3EFE0;
+    --preto: #000000
+}
+
+[v-cloak] > * 
+{ 
+    display: none 
+}
+[v-cloak]::before { 
+    content: "carregando..." 
+}
+
+html, body{
+    font-family: Poppins, Roboto !important;
+    background-color: var(--branco) !important;
+    /* background-image: linear-gradient(to bottom right, var(--branco), var(--amarelo)); */
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    height: 100% !important;
+}
+
+#vueApp{
+    height: 100%;
+    padding: 25px;
+}
+
+#base{
+    margin-top: 30px !important;
+}
+
+.form-inicial{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+button, input, optgroup, select, textarea{    
+    font-family: Poppins, Roboto !important;
+}
+
+.my-loader{
+    position: fixed !important;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.loader-holder{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    backdrop-filter: blur(2px);
+}
+
+.container-login{
+    padding-top: 15% !important;
+}
+
+.form-control{
+    border-radius: 5px !important;
+}
+
+.form-control:focus {
+    background-color: var(--amarelo) !important;
+    opacity: 0.2 !important;
+}
+
+
+span.has-error{    
+    color: #F44336 !important;
+}
+
+input.has-error{
+    border: 1px solid #F44336 !important;
+    -webkit-box-shadow: 0 1px 0 0 #F44336 !important;
+    box-shadow: 0 1px 0 0 #F44336 !important;
+}
+
+.input-field>label {
+    font-size: 16px !important;
+}
+
+
+@media only screen and (max-width: 600px){
+    .container-login{
+        padding-top: 30% !important;
+    }
+}
