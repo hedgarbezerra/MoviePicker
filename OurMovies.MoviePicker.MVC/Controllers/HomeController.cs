@@ -52,6 +52,14 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         {
             if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 return RedirectToAction("Index");
+
+            AutenticacaoService service = new AutenticacaoService();
+
+            var qtdUsuarios = service.Listar().Count;
+
+            if (qtdUsuarios >= 2)
+                return RedirectToActionPermanent("Login");
+
             return View();
         }
 

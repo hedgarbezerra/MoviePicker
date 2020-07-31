@@ -146,31 +146,35 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\now-ui-kit.min.css" />
+    <Content Include="Content\css\material-kit.css" />
+    <Content Include="Content\css\material-kit.min.css" />
+    <Content Include="Content\img\card-background.jpg" />
     <Content Include="Content\js\cadastro.js" />
+    <Content Include="Content\js\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\css\material-kit.css.map" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\axios.min.js" />
-    <Content Include="Scripts\BootstrapUiKit\bootstrap.min.js" />
-    <Content Include="Scripts\BootstrapUiKit\now-ui-kit.min.js" />
-    <Content Include="Scripts\BootstrapUiKit\popper.min.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <Content Include="Content\js\login.js" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Scripts\bootstrap-material-design.min.js" />
+    <Content Include="Scripts\material-kit.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\vee-validate-locale-pt_Br.js" />
     <Content Include="Scripts\vee-validate.full.min.js" />
     <Content Include="Scripts\vue-infinite-loading.js" />
     <Content Include="Scripts\vue-spinners.umd.min.js" />
     <Content Include="Scripts\vue-toasted.min.js" />
     <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\Vue\Components\movieCard.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -192,10 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\img\" />
     <Folder Include="Content\js\classes\" />
-    <Folder Include="Scripts\Vue\Components\" />
     <Folder Include="Scripts\Vue\Filters\" />
+    <Folder Include="Views\BaseMVC\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

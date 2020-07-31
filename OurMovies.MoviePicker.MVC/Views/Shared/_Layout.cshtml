@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Nossos filmes</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/nowuikit")
+    @Styles.Render("~/Content/materialdesign")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/vue")
+    @Scripts.Render("~/bundles/vuecomponents")
     @Scripts.Render("~/bundles/moment")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/moment")
-    @Scripts.Render("~/bundles/nowuikit")
+    @Scripts.Render("~/bundles/materialdesign")
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @Scripts.Render("~/bundles/main")
     <script src="http://localhost:8098"></script>
@@ -19,11 +20,10 @@
 <body>
    @Html.Partial("~/Views/Shared/_Navbar.cshtml")
     <div id="vueApp" v-cloak>
-        <div class="loader-holder" v-if="isLoading">            
-            <bounce-loader class="my-loader" :color="'#bada55'" :loading="isLoading" :size="80" :sizeUnit="'px'"></bounce-loader>
+        <div class="loader-holder" v-if="isLoading">
+            <pacman-loader class="my-loader" :color="'#bada55'" :loading="isLoading" :size="80" :sizeUnit="'px'"></pacman-loader>
         </div>
-        <div id="base" class="container">
-            <bar-loader class="my-loader" :color="#bada55" :loading="loading" :size="150" :sizeUnit="px"></bar-loader>
+        <div class="container">
             @RenderBody()
         </div>
     </div>

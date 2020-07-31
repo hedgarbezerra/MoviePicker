@@ -2,6 +2,8 @@
     el: '#vueApp',
     data: {
         isLoading: false,
+        verSenha: false,
+        verConfirmacao: false,
         usuario: {
             senha: '',
             login: '',
@@ -21,13 +23,13 @@
                 Senha: this.usuario.senha
             };
            
-            fazerRequest('https://localhost:44340/api/Auth/Cadastrar', REQUESTMETHOD.POST, usuarioLogin).then(res => {
-                if(res.success){
-                    toastMessage(res.message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
-                    setTimeout(()=> window.location.replace('Login'), 2500)
+            fazerRequest('https://localhost:44340/api/Auth/Cadastrar', REQUESTMETHOD.POST, usuarioLogin).then(({ data, success, message})  => {
+                if(success){
+                    toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
+                    setTimeout(()=> window.location.replace('Login'), 3000)
                 }
                 else
-                    toastMessage(res.message, TOASTMETHOD.ERROR, 'error_outline');
+                    toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
                     
                 this.isLoading = false;
             }).catch(err => {

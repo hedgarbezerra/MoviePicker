@@ -6,7 +6,6 @@ Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
 Vue.config.devtools = true;
 window.addEventListener('load', () => {
-    Vue.use(Toasted, toastOptions);
 });
 
 const REQUESTMETHOD = Object.freeze({ "GET": 1, "POST": 2, "PUT": 3, "DELETE": 4 });
@@ -53,6 +52,7 @@ function toastMessage(mensagem = '', tipoToast = TOASTMETHOD.INFO, icon = 'help_
         })
     }
 }
+
 
 function validarForm(form, callback = undefined){
     form.validate().then(success =>{

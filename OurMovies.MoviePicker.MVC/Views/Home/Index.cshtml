@@ -1,4 +1,19 @@
 ﻿@{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Início";
 }
+
+<div class="row" v-if="listaFilmesFiltrados.length > 0">
+    <ul>
+        <li v-for="filme in listaFilmesFiltrados" :key="filme.Id"> {{ filme.Nome}}
+            <p v-for="categoria in filme.Categorias" :key="categoria.Id"> {{categoria.Nome}}</p>
+        </li>
+    </ul>
+</div>
+<div class="row" v-else>
+   
+</div>
+@section  scripts{
+    @Scripts.Render("~/bundles/index")
+}
+
 

@@ -36,18 +36,33 @@ namespace OurMovies.MoviePicker.MVC
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                       "~/Content/js/main.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/index").Include(
+                      "~/Content/js/index.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/nowuikit").Include(
                       "~/Scripts/BootstrapUiKit/popper.min.js",
                       "~/Scripts/BootstrapUiKit/bootstrap.min.js",
                       "~/Scripts/BootstrapUiKit/now-ui-kit.min.js"
                       ));
 
+            bundles.Add(new ScriptBundle("~/bundles/vuecomponents")
+                .IncludeDirectory("~/Scripts/Vue/Components", "*.js"));
+
+           bundles.Add(new ScriptBundle("~/bundles/materialdesign").Include(
+                   "~/Scripts/popper.min.js",
+                   "~/Scripts/bootstrap-material-design.min.js",
+                   "~/Scripts/material-kit.min.js"
+                   ));
+
+            bundles.Add(new StyleBundle("~/Content/uikit").Include(
+                     "~/Content/css/uikit.min.css",
+                     "~/Content/css/uikit-rtl.min.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/nowuikit").Include(
-                     "~/Content/css/bootstrap.min.css",
-                     "~/Content/css/now-ui-kit.min.css"));
+            bundles.Add(new StyleBundle("~/Content/materialdesign").Include(
+                     "~/Content/css/material-kit.min.css"));
         }
     }
 }

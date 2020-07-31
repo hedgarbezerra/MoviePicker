@@ -3,42 +3,54 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 <div class="row container-login">
-    <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2">
-        <h1>Conecte-se</h1>
-        <validation-observer ref="formLogin" >
-            <form id="formLogin" class="form-inicial" v-on:submit.prevent="validarLogin" novalidate>
-                <div class="form-group">
-                    <validation-provider name="usuário" vid="usuarioLogin"  v-slot="{ errors }"> 
-                        <label for="usuarioLogin">usuário</label>
-                        <input placeholder="seu usuário" class="form-control" id="usuarioLogin" v-model="usuario.login" type="text" v-bind:class="{'has-error': errors[0]}"
-                            minlength="6" maxlength="20"  required>
-                        <span class="form-text text-muted has-error">{{ errors[0] }}</span>
-                    </validation-provider>
-                </div>
-    
-                <div class="form-group">
-                    <validation-provider name="senha" vid="senhaLogin"  v-slot="{ errors }"> 
-                        <label for="senhaLogin">senha</label>   
-                        <input placeholder="sua senha" class="form-control" id="senhaLogin" v-model="usuario.senha" type="password" v-bind:class="{'has-error': errors[0]}"
-                            minlength="8" maxlength="20"  required>
-                        <span class="form-text text-muted has-error">{{ errors[0] }}</span>
-                    </validation-provider>
-                </div>
-                <div class="row">
-                    <div class="col s6">
-                        <a  href="@Url.Action("Cadastrar", "Home")">cadastre-se</a>
-                        
-                    </div>  
-                    <div class="col s6">
-                        <button class="btn btn-primary btn-icon btn-round float-right" type="submit">
-                            <i class="material-icons">send</i>
-                        </button>      
-                    </div>                    
-                </div>           
-            </form>
-        </validation-observer>
-    </div>
-</div>  
+    <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3">
+         <div class="card card-nav-tabs"> <!--card-background -->
+            <div class="card-header text-center card-header-primary">
+                <h1>Conecte-se</h1>
+            </div>
+            <div class="card-body">
+                <validation-observer ref="formLogin" >
+                    <form id="formLogin" class="form-inicial" v-on:submit.prevent="validarLogin" novalidate>
+                        <div class="form-group label-floating has-feedback">
+                            <validation-provider name="usuário" vid="usuarioLogin"  v-slot="{ errors }">
+                                <label for="usuarioLogin">usuário</label>
+                                <input placeholder="seu usuário" class="form-control" id="usuarioLogin" v-model="usuario.login" type="text" v-bind:class="{'has-error': errors[0]}"
+                                    minlength="6" maxlength="20"  required>
+                                    <span class="material-icons form-control-feedback">account_circle</span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </validation-provider>
+                        </div>
 
-@Scripts.Render("~/bundles/login")
-        
+                        <div class="form-group label-floating has-feedback">
+                            <validation-provider name="senha" vid="senhaLogin"  v-slot="{ errors }">
+                                <label for="senhaLogin">senha</label>
+                                <input placeholder="sua senha" class="form-control" id="senhaLogin" v-model="usuario.senha" v-bind:type="verSenha ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}"
+                                    minlength="8" maxlength="20"  required>
+                                    <span class="material-icons form-control-feedback can-click" v-on:click="verSenha = !verSenha">{{ verSenha ? 'lock_open' : 'lock' }}</span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </validation-provider>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <a  href="@Url.Action("Cadastrar", "Home")">cadastre-se</a>
+
+                            </div>
+                            <div class="col s6">
+                                <button class="btn btn-primary btn-fab btn-fab-mini btn-round float-right" type="submit">
+                                    <i class="material-icons">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </validation-observer>
+            </div>
+            <div class="card-footer text-center text-muted">
+            Secrecy
+            </div>
+        </div>
+    </div>
+</div>
+
+@section  scripts{
+    @Scripts.Render("~/bundles/login")
+}

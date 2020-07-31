@@ -43,5 +43,13 @@ namespace OurMovies.MoviePicker.Services.Services
 
             return repo.Listar(x => x.Usuario == usuario).ToList();
         }
+
+        public List<SenhaAcesso> Listar()
+        {
+            repo = new SenhasAcessoRepository(_contexto);
+
+            return repo.Listar().ToList();
+        }
+
     }
 }

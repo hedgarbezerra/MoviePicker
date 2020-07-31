@@ -2,6 +2,7 @@
     el:'#vueApp',
     data:{
         isLoading: false,
+        verSenha: false,
         usuario: {
             senha: '',
             login: ''
@@ -20,13 +21,13 @@
                 Senha: this.usuario.senha
             };
 
-            fazerRequest('https://localhost:44340/api/Auth/Login', REQUESTMETHOD.POST, usuarioLogin).then(res => {
-                if(res.success){
-                    toastMessage(res.message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
+            fazerRequest('https://localhost:44340/api/Auth/Login', REQUESTMETHOD.POST, usuarioLogin).then(({ data, success, message}) => {
+                if(success){
+                    toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
                     setTimeout(()=> window.location.replace('Index'), 2500)
                 }
                 else
-                    toastMessage(res.message, TOASTMETHOD.ERROR, 'error_outline');
+                    toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
                 
                 this.isLoading = false;
             }).catch(err => {
