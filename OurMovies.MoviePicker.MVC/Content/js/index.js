@@ -3,7 +3,7 @@
     data: {
         isLoading: false,
         listaFilmes: [],
-        listaFilmesFiltrados: []
+        searchTerm: ''
     },
     methods: {
         fazerRequestFilmes(){
@@ -14,7 +14,6 @@
                         this.isLoading = false;
                         toastMessage(message, TOASTMETHOD.SUCCESS, 'video_library');
                         this.listaFilmes = data;
-                        this.listaFilmesFiltrados = data;
                     }
                     else{
                         toastMessage(message, TOASTMETHOD.SHOW, 'notification_important');
@@ -27,6 +26,14 @@
                     fazerRequestFilmes();
                 }, 2000);
             })
+        },
+        diferencaDias(data){
+            return moment(data).diff(moment(), 'days')
+        }
+    },
+    computed:{        
+        listaFilmesFiltrados(){
+            return this.listaFilmes.filter(filme => filme.Nome.toLowerCase().search(this.searchTerm.toLowerCase()) >= 0);
         }
     },
     created(){        

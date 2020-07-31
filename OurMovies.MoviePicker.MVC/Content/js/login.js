@@ -35,5 +35,8 @@
                 toastMessage('Não foi possível conectar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
             });
         }
+    },
+    created(){        
+        Vue.use(Toasted, toastOptions);
     }
 });

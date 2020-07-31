@@ -23,6 +23,9 @@
     },
     template: ``,
     methods: {
+        diferencaDias(data){
+            return moment(data).diff(moment(), 'days')
+        },
 
     },
     mounted() { },

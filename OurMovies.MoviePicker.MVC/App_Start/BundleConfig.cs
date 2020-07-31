@@ -48,7 +48,10 @@ namespace OurMovies.MoviePicker.MVC
             bundles.Add(new ScriptBundle("~/bundles/vuecomponents")
                 .IncludeDirectory("~/Scripts/Vue/Components", "*.js"));
 
-           bundles.Add(new ScriptBundle("~/bundles/materialdesign").Include(
+            bundles.Add(new ScriptBundle("~/bundles/vuefilters")
+               .IncludeDirectory("~/Scripts/Vue/Filters", "*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/materialdesign").Include(
                    "~/Scripts/popper.min.js",
                    "~/Scripts/bootstrap-material-design.min.js",
                    "~/Scripts/material-kit.min.js"

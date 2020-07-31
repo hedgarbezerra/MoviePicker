@@ -94,7 +94,15 @@ input.has-error{
     opacity: 1 !important;
     pointer-events: all !important;
 }
-
+.card *i:not(){
+    font-family: Poppins, Roboto;
+}
+.card-icon i{
+    margin-right: 10px;
+}
+.card-avaliacao i{
+    font-size: 40px !important;
+}
 .card-background *{    
     color: white !important;
 }
@@ -111,7 +119,11 @@ input.has-error{
  .card .card-header-primary{
     background: linear-gradient(1200deg,var(--amarelo), var(--roxo)) !important;
 }
-
+.card-title >h4> i{
+    vertical-align: middle;
+    padding-right: 5px;
+    font-size: 30px !important;
+}
 
 @media only screen and (max-width: 600px){
     .container-login{

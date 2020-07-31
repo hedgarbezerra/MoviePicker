@@ -5,8 +5,6 @@ VeeValidate.setInteractionMode('eager');
 Vue.component('ValidationProvider', VeeValidate.ValidationProvider);
 Vue.component('ValidationObserver', VeeValidate.ValidationObserver);
 Vue.config.devtools = true;
-window.addEventListener('load', () => {
-});
 
 const REQUESTMETHOD = Object.freeze({ "GET": 1, "POST": 2, "PUT": 3, "DELETE": 4 });
 const TOASTMETHOD = Object.freeze({ "ERROR": 1, "SHOW": 2, "SUCCESS": 3, "INFO": 4 });
@@ -25,6 +23,7 @@ function focarEl(el = HTMLDocument){
         block: 'center'
     });
 }
+
 
 function toastMessage(mensagem = '', tipoToast = TOASTMETHOD.INFO, icon = 'help_outline', action = []){
     if(tipoToast == 1){

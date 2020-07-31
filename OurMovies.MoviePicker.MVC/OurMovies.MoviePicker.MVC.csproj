@@ -149,6 +149,7 @@
     <Content Include="Content\css\material-kit.css" />
     <Content Include="Content\css\material-kit.min.css" />
     <Content Include="Content\img\card-background.jpg" />
+    <Content Include="Content\img\movie-gif.gif" />
     <Content Include="Content\js\cadastro.js" />
     <Content Include="Content\js\index.js" />
     <Content Include="favicon.ico" />
@@ -175,6 +176,8 @@
     <Content Include="Scripts\vue-toasted.min.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\Vue\Components\movieCard.js" />
+    <Content Include="Scripts\Vue\Filters\categoriasfilter.js" />
+    <Content Include="Scripts\Vue\Filters\timefilters.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -197,8 +200,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\js\classes\" />
-    <Folder Include="Scripts\Vue\Filters\" />
-    <Folder Include="Views\BaseMVC\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

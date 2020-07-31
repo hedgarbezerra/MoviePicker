@@ -37,5 +37,8 @@
                 toastMessage('Não foi possível cadastrar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
             });
         }
+    },
+    created(){        
+        Vue.use(Toasted, toastOptions);
     }
 });
