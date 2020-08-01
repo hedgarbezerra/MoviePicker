@@ -64,6 +64,9 @@ namespace OurMovies.MoviePicker.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/animatecss").Include(
+                     "~/Content/css/animate.css"));
+
             bundles.Add(new StyleBundle("~/Content/materialdesign").Include(
                      "~/Content/css/material-kit.min.css"));
         }

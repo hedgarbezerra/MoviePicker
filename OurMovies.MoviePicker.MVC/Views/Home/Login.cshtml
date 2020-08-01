@@ -5,7 +5,6 @@ Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 <div class="row container-login">
     <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3">
         <div class="card card-nav-tabs">
-            <!--card-background -->
             <div class="card-header text-center card-header-primary">
                 <h1>Conecte-se</h1>
             </div>
@@ -13,12 +12,12 @@ Layout = "~/Views/Shared/_LayoutLogin.cshtml";
                 <validation-observer ref="formLogin">
                     <form id="formLogin" v-on:submit.prevent="validarLogin" novalidate>
 
-                        <validation-provider name="usuário" vid="usuarioLogin" v-slot="{ errors }">
+                        <validation-provider name="usuário" vid="usuarioLogin" rules="required" v-slot="{ errors }">
                             <div class="form-group label-floating has-feedback">
                                 <label for="usuarioLogin">usuário</label>
                                 <input placeholder="seu usuário" class="form-control" id="usuarioLogin"
                                     v-model="usuario.login" type="text" v-bind:class="{'has-error': errors[0]}"
-                                    minlength="6" maxlength="20" required>
+                                    minlength="6" maxlength="20">
                                 <span class="form-control-feedback">
                                     <i class="material-icons">account_circle</i>
                                 </span>                                
@@ -26,12 +25,12 @@ Layout = "~/Views/Shared/_LayoutLogin.cshtml";
                             </div>
                         </validation-provider>
 
-                        <validation-provider name="senha" vid="senhaLogin" v-slot="{ errors }">
+                        <validation-provider name="senha" vid="senhaLogin" rules="required|min:8|max:20" v-slot="{ errors }">
                             <div class="form-group label-floating has-feedback">
                                 <label for="senhaLogin">senha</label>
                                 <input placeholder="sua senha" class="form-control" id="senhaLogin"
                                     v-model="usuario.senha" v-bind:type="verSenha ? 'text' : 'password'"
-                                    v-bind:class="{'has-error': errors[0]}" minlength="8" maxlength="20" required>
+                                    v-bind:class="{'has-error': errors[0]}">
                                 <span class="form-control-feedback">
                                     <i class="material-icons can-click" v-on:click="verSenha = !verSenha">{{ verSenha ? 'lock_open' : 'lock' }}</i>
                                 </span> 

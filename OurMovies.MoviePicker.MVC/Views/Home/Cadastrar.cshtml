@@ -12,11 +12,10 @@
                 <validation-observer ref="formCadastro" >
                     <form id="formCadastro"  v-on:submit.prevent="validarCadastro" novalidate>
                         
-                        <validation-provider name="usuário" vid="usuarioCadastro" v-slot="{ errors }"> 
+                        <validation-provider name="usuário" vid="usuarioCadastro" rules="required|min:6|max:20" v-slot="{ errors }"> 
                             <div class="form-group label-floating has-feedback">
                                 <label class="control-label" for="usuarioCadastro">usuário</label>
-                                <input placeholder="seu usuário" class="form-control" id="usuarioCadastro" v-model="usuario.login" type="text" v-bind:class="{'has-error': errors[0]}"
-                                        minlength="6" maxlength="20"  required>
+                                <input placeholder="seu usuário" class="form-control" id="usuarioCadastro" v-model="usuario.login" type="text" v-bind:class="{'has-error': errors[0]}">
                                 <span class="form-control-feedback">
                                     <i class="material-icons">account_circle</i>
                                 </span>
@@ -24,11 +23,11 @@
                             </div>
                         </validation-provider>
                           
-                        <validation-provider name="senha" vid="senhaCadastro" v-slot="{ errors }"> 
+                        <validation-provider name="senha" vid="senhaCadastro" rules="required|min:8|max:20" v-slot="{ errors }"> 
                             <div class="form-group label-floating has-feedback">
                                 <label class="control-label" for="senhaCadastro">senha</label>   
-                                <input placeholder="sua senha" class="form-control" id="senhaCadastro" v-model="usuario.senha" v-bind:type="verSenha ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}"
-                                    minlength="8" maxlength="20"  required>
+                                <input placeholder="sua senha" class="form-control" id="senhaCadastro" v-model="usuario.senha" 
+                                        v-bind:type="verSenha ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}">
                                     <span class="form-control-feedback">
                                         <i class="material-icons can-click" v-on:click="verSenha = !verSenha">{{ verSenha ? 'lock_open' : 'lock' }}</i>
                                     </span>                                    
@@ -37,11 +36,10 @@
                         </validation-provider>
 
                         
-                        <validation-provider name="senha" vid="senhaCadastroConfirmacao" rules="confirmed:senhaCadastro" v-slot="{ errors }"> 
+                        <validation-provider name="senha" vid="senhaCadastroConfirmacao" rules="required|min:8|max:20|confirmed:senhaCadastro" v-slot="{ errors }"> 
                         <div class="form-group label-floating has-feedback">
                                 <label class="control-label" for="senhaCadastro">confirmar senha</label>   
-                                <input placeholder="confirmação" class="form-control" id="senhaCadastroConfirmacao" v-model="usuario.senhaConfirmacao" v-bind:type="verConfirmacao ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}"
-                                    minlength="8" maxlength="20"  required>
+                                <input placeholder="confirmação" class="form-control" id="senhaCadastroConfirmacao" v-model="usuario.senhaConfirmacao" v-bind:type="verConfirmacao ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}" >
                                     <span class="form-control-feedback">
                                         <i class="material-icons can-click" v-on:click="verConfirmacao = !verConfirmacao">{{ verConfirmacao ? 'lock_open' : 'lock' }}</i>
                                     </span>                                    

@@ -3,7 +3,8 @@
     data: {
         isLoading: false,
         listaFilmes: [],
-        searchTerm: ''
+        searchTerm: '',
+        searchAssistidos: false
     },
     methods: {
         fazerRequestFilmes(){
@@ -33,7 +34,10 @@
     },
     computed:{        
         listaFilmesFiltrados(){
-            return this.listaFilmes.filter(filme => filme.Nome.toLowerCase().search(this.searchTerm.toLowerCase()) >= 0);
+            var filmesFiltrados = this.listaFilmes.filter(filme => filme.Nome.toLowerCase().search(this.searchTerm.toLowerCase()) >= 0);
+            if(this.searchAssistidos)
+                filmesFiltrados = filmesFiltrados.filter(filme => filme.Assistido);
+            return filmesFiltrados;
         }
     },
     created(){        

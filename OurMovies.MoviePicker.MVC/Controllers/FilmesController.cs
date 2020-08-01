@@ -121,7 +121,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
 
                 var response = new DefaultResponse<Filme>
                 {
-                    data = listaFilmes,
+                    data = listaFilmes.OrderByDescending(x => x.DtAdicionado).ToList(),
                     message = listaFilmes.Count > 0 ? "Filmes encontrados." : "Filmes não foram encontrados.",
                     success = true
                 };

@@ -146,10 +146,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\material-kit.css" />
     <Content Include="Content\css\material-kit.min.css" />
     <Content Include="Content\img\card-background.jpg" />
     <Content Include="Content\img\movie-gif.gif" />
+    <Content Include="Content\img\shame-gif.gif" />
+    <Content Include="Content\img\winky-gif.gif" />
     <Content Include="Content\js\cadastro.js" />
     <Content Include="Content\js\index.js" />
     <Content Include="favicon.ico" />

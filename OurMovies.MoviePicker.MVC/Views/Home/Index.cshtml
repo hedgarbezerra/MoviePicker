@@ -2,27 +2,115 @@
 ViewBag.Title = "Início";
 }
 
-
-<div class="row mb-5">
-    <div class="col-lg-12 col-sm-10 offset-sm-1">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">
-                    <i class="material-icons">search</i>
-                </span>
-            </div>
-            <input type="text" class="form-control" placeholder="pesquisar..." v-model="searchTerm">
-            </div>
+<div class="modal fade bd-example-modal-sm" id="assistirModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">deseja realmente assistir esse filme?</h4>
+        </div>
+        <div class="modal-body">
+            <span class="text-muted">pense bem...bom, você quem sabe...</span>
+            <img src="/Content/img/shame-gif.gif" class="img-raised rounded img-fluid" alt="image background">
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal">cancelar</button>
+            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">assistir filme</button>
+        </div>
+      </div>
     </div>
 </div>
-<div v-if="listaFilmesFiltrados.length > 0"  >
+
+<div class="modal fade bd-example-modal-sm" id="avaliarModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">dê rating sem dar hate!</h4>
+        </div>
+        <div class="modal-body">
+            <span class="text-muted">nada melhor que sinceridade nesses momentos, né?</span>
+            <img src="/Content/img/winky-gif.gif" class="img-raised rounded img-fluid" alt="image background">
+            <div class="row mt-3 justify-content-center">
+                <validation-observer ref="formFilmeNota">
+                    <form id="formFilmeNota" name="formFilmeNota" v-on:submit.prevent="validarFormaNota" class="form text-center" novalidate>
+                        <span class="text-muted ">nota para o filme </span>
+                        <validation-provider vid="notaFilme" rules="required">
+                            <div id="like" class="rating kustify-content-center mt-2">
+                                <input type="radio" id="heart_5" name="like" value="5" />
+                                <label for="heart_5" title="Five"><i class="material-icons">favorite</i></label>
+                                <input type="radio" id="heart_4" name="like" value="4" />
+                                <label for="heart_4" title="Four"><i class="material-icons">favorite</i></label>
+                                <input type="radio" id="heart_3" name="like" value="3" />
+                                <label for="heart_3" title="Three"><i class="material-icons">favorite</i></label>
+                                <input type="radio" id="heart_2" name="like" value="2" />
+                                <label for="heart_2" title="Two"><i class="material-icons">favorite</i></label>
+                                <input type="radio" id="heart_1" name="like" value="1" />
+                                <label for="heart_1" title="One"><i class="material-icons">favorite</i></label>
+                              </div>
+                        </validation-provider>
+                    </form>
+                </validation-observer>
+                
+            </div>
+            
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal">cancelar</button>
+            <button type="submit" form="formFilmeNota" class="btn btn-primary btn-link btn-wd btn-lg">avaliar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<movie-add-card :callback="fazerRequestFilmes"></movie-add-card>
+
+<div class="row mb-5">   
+    <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+        <div class="row">
+            <div class="col-lg-10 col-sm-10">
+                <div class="form-group label-floating has-feedback">
+                    <label class="control-label">nome do filme</label>
+                          <input type="text"  placeholder="pesquisar..." class="form-control"  v-model="searchTerm" />
+                    <span class="form-control-feedback">
+                    <i class="material-icons">search</i>
+                    </span>
+                  </div>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#novoFilmeModal">
+                    <i class="material-icons">add_to_queue</i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="chkFilmesAssistidos" v-model="searchAssistidos"> filmes assistidos 
+                      <span class="form-check-sign">
+                          <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+
+    </div>  
+</div>
+
+<transition-group v-if="listaFilmesFiltrados.length > 0" name="slide-fade" tag="div" >
+    
     <div class="row" v-for="filme in listaFilmesFiltrados" :key="filme.Id">
         <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-header card-header-rose">
                     <div class="card-icon">
-                        <i class="material-icons" v-if="diferencaDias(filme.DtAdicionado) >= -5">new_releases</i>
-                        <i class="material-icons" v-if="filme.Nome > 3">Favorite</i>
+                        <i class="material-icons" v-if="diferencaDias(filme.DtAdicionado) >= -2">new_releases</i>
+                        <i class="material-icons" v-if="filme.Nota > 3">favorite</i>
                         <i class="material-icons">hd</i>
                         <i class="material-icons" v-if="filme.Assistido">visibility</i>
                     </div>
@@ -43,11 +131,11 @@ ViewBag.Title = "Início";
                         <h4> filme não avaliado</h4>
                     </div>
                     <br/>      
-                    <button type="button" class="btn btn-primary btn-round" v-bind:disabled="filme.Assistido">
+                    <button type="button" class="btn btn-primary btn-round"  data-toggle="modal" data-target="#assistirModal"  v-bind:data-filme="filme.Id" v-bind:disabled="filme.Assistido">
                         <i class="material-icons">play_circle_outline</i>
                         assistir
                     </button>
-                    <button type="button" class="btn btn-primary btn-round" v-bind:disabled="filme.Nota > 0 || !filme.Assistido">
+                    <button type="button" class="btn btn-primary btn-round"  data-toggle="modal" data-target="#avaliarModal"  v-bind:data-filme="filme.Id" v-bind:disabled="filme.Nota > 0 || !filme.Assistido">
                         <i class="material-icons">edit</i>avaliar
                     </button>  
 
@@ -56,16 +144,18 @@ ViewBag.Title = "Início";
             </div>
         </div>    
     </div>
-
-</div>
-<div class="row" v-else>
-    <div class="col-lg-8 offset-lg-2 col-sm-10 offset-sm-1">
-        <div class="text-center">
-            <h3 class="no-content"> não encontramos seus filmes... </h3>
-            <img src="/Content/img/movie-gif.gif" class="img-raised rounded img-fluid" alt="image background">
+</transition-group>
+<transition v-else>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-sm-10 offset-sm-1">
+            <div class="text-center">
+                <h3 class="no-content"> não encontramos seus filmes... </h3>
+                <img src="/Content/img/movie-gif.gif" class="img-raised rounded img-fluid" alt="image background">
+            </div>
         </div>
     </div>
-</div>
+</transition>
+
 
 
 
