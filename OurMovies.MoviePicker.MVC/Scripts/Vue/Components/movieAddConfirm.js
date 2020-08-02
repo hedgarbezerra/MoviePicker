@@ -21,17 +21,16 @@ Vue.component('movie-add-card', {
 
             fazerRequest('https://localhost:44340/api/Filmes/Incluir', REQUESTMETHOD.POST, filmeCtx).then(({ data, success, message}) => {
                 if(success){
-                    toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
+                    toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');                    
                     this.callback();
                 }
                 else
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
                 
-                app.isLoading = false;
             }).catch(err => {
-                app.isLoading = false;
-                toastMessage('Não foi possível conectar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
-            });
+                toastMessage('Não foi possível adiciona este filme no momento.', TOASTMETHOD.ERROR, 'error_outline');
+            })
+            .finally(() => app.isLoading = false);
         },
         carregarCategorias(){
 

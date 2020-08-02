@@ -178,6 +178,10 @@
     <Content Include="Scripts\vue-spinners.umd.min.js" />
     <Content Include="Scripts\vue-toasted.min.js" />
     <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\Vue\Components\categoriaAdd.js" />
+    <Content Include="Scripts\Vue\Components\movieAddConfirm.js" />
+    <Content Include="Scripts\Vue\Components\movieAssistir.js" />
+    <Content Include="Scripts\Vue\Components\movieAvaliacao.js" />
     <Content Include="Scripts\Vue\Components\movieCard.js" />
     <Content Include="Scripts\Vue\Filters\categoriasfilter.js" />
     <Content Include="Scripts\Vue\Filters\timefilters.js" />

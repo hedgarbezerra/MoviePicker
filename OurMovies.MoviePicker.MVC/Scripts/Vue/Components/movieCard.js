@@ -26,7 +26,16 @@
         diferencaDias(data){
             return moment(data).diff(moment(), 'days')
         },
+        mudarEstadoProp(propriedade){
+            this.propriedade = !propriedade;
+        }
 
+    },
+    data(){
+        return {
+            visualizarAvaliacaoModal: false,
+            visualizarAssistirModal: false            
+        }
     },
     mounted() { },
     beforeDestroy() {}
