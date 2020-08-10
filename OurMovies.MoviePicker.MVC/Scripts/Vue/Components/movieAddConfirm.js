@@ -3,6 +3,11 @@ Vue.component('movie-add-card', {
         callback:{
             type: Function,
             required: false
+        },
+        listaCategorias:{
+            type: Array,
+            required: false,
+            default: () => []
         }
     },
     methods:{
@@ -19,10 +24,19 @@ Vue.component('movie-add-card', {
                 Categorias: this.filme.categorias.map(x => this.categorias.find(y => y.Id == x))
             };
 
-            fazerRequest('https://localhost:44340/api/Filmes/Incluir', REQUESTMETHOD.POST, filmeCtx).then(({ data, success, message}) => {
+            fazerRequest(`${window.location.origin}/api/Filmes/Incluir`, REQUESTMETHOD.POST, filmeCtx).then(({ data, success, message}) => {
                 if(success){
-                    toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');                    
-                    this.callback();
+                    toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');                     
+                    $(`#novoFilmeModal`).modal('hide');
+
+                    this.filme = {
+                        nome: '',
+                        descricao: '',
+                        categorias: []
+                    };
+
+                    if(this.callback != undefined|| this.callback != null)                  
+                        setTimeout(() => this.callback(), 1000);
                 }
                 else
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
@@ -34,7 +48,7 @@ Vue.component('movie-add-card', {
         },
         carregarCategorias(){
 
-            fazerRequest('https://localhost:44340/api/Categorias/Listar', REQUESTMETHOD.GET).then(({ data, success, message}) => {
+            fazerRequest(`${window.location.origin}/api/Categorias/Listar`, REQUESTMETHOD.GET).then(({ data, success, message}) => {
                 if(success)
                     this.categorias = data;                
                 else
@@ -112,7 +126,9 @@ Vue.component('movie-add-card', {
             focus:true,
             show: false
         });
-        this.carregarCategorias();
+
+        if(this.listaCategorias.length  <= 0)
+            this.carregarCategorias();
 
     },
     beforeDestroy(){

@@ -19,18 +19,6 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         }
 
         [Authorize]
-        public ActionResult CadastrarFilme()
-        {
-            return View();
-        }
-
-        [Authorize]
-        public ActionResult CadastrarCategoria()
-        {
-            return View();
-        }
-
-        [Authorize]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

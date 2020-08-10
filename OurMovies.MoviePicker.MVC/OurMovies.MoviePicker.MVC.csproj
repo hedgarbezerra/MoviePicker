@@ -136,7 +136,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CategoriasApiController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\FilmesApiController.cs" />
     <Compile Include="Controllers\FilmesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -151,8 +153,13 @@
     <Content Include="Content\css\material-kit.min.css" />
     <Content Include="Content\img\card-background.jpg" />
     <Content Include="Content\img\movie-gif.gif" />
+    <Content Include="Content\img\nothing-gif.gif" />
+    <Content Include="Content\img\peek-gif.gif" />
     <Content Include="Content\img\shame-gif.gif" />
     <Content Include="Content\img\winky-gif.gif" />
+    <Content Include="Content\js\adicionarCategorias.js" />
+    <Content Include="Content\js\adicionarFilmes.js" />
+    <Content Include="Content\js\aleatorios.js" />
     <Content Include="Content\js\cadastro.js" />
     <Content Include="Content\js\index.js" />
     <Content Include="favicon.ico" />
@@ -178,7 +185,7 @@
     <Content Include="Scripts\vue-spinners.umd.min.js" />
     <Content Include="Scripts\vue-toasted.min.js" />
     <Content Include="Scripts\vue.js" />
-    <Content Include="Scripts\Vue\Components\categoriaAdd.js" />
+    <Content Include="Scripts\Vue\Components\CategoriaAddConfirm.js" />
     <Content Include="Scripts\Vue\Components\movieAddConfirm.js" />
     <Content Include="Scripts\Vue\Components\movieAssistir.js" />
     <Content Include="Scripts\Vue\Components\movieAvaliacao.js" />
@@ -197,12 +204,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\CadastrarCategoria.cshtml" />
-    <Content Include="Views\Home\CadastrarFilme.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Home\Cadastrar.cshtml" />
+    <Content Include="Views\Categorias\Cadastrar.cshtml" />
+    <Content Include="Views\Filmes\Cadastrar.cshtml" />
+    <Content Include="Views\Filmes\Aleatorio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

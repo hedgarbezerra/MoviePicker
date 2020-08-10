@@ -21,7 +21,7 @@
                 Senha: this.usuario.senha
             };
 
-            fazerRequest('https://localhost:44340/api/Auth/Login', REQUESTMETHOD.POST, usuarioLogin).then(({ data, success, message}) => {
+            fazerRequest(`${window.location.origin}/api/Auth/Login`, REQUESTMETHOD.POST, usuarioLogin).then(({ data, success, message}) => {
                 if(success){
                     toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
                     setTimeout(()=> window.location.replace('Index'), 2500)

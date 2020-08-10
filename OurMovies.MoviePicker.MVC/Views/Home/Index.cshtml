@@ -1,78 +1,14 @@
 ﻿@{
 ViewBag.Title = "Início";
 }
+<movie-add-card :listaCategorias="categorias" :callback="fazerRequestFilmes"></movie-add-card>
 
-<div class="modal fade bd-example-modal-sm" id="assistirModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">deseja realmente assistir esse filme?</h4>
-        </div>
-        <div class="modal-body">
-            <span class="text-muted">pense bem...bom, você quem sabe...</span>
-            <img src="/Content/img/shame-gif.gif" class="img-raised rounded img-fluid" alt="image background">
-        </div>
-        <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal">cancelar</button>
-            <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">assistir filme</button>
-        </div>
-      </div>
-    </div>
-</div>
-
-<!-- <div class="modal fade bd-example-modal-sm" id="avaliarModal" tabindex="-1" role="dialog"
-    aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">dê rating sem dar hate!</h4>
-            </div>
-            <div class="modal-body">
-                <span class="text-muted">nada melhor que sinceridade nesses momentos, né?</span>
-                <img src="/Content/img/winky-gif.gif" class="img-raised rounded img-fluid" alt="image background">
-                <div class="row mt-3 justify-content-center">
-                    <validation-observer ref="formFilmeNota">
-                        <form id="formFilmeNota" name="formFilmeNota" v-on:submit.prevent="validarFormaNota"
-                            class="form text-center" novalidate>
-                            <span class="text-muted ">nota para {{filme.Nome}} </span>
-                            <validation-provider vid="notaFilme" rules="required">
-                                <div id="like" class="rating kustify-content-center mt-2">
-                                    <input type="radio" id="heart_5" name="like" value="5" />
-                                    <label for="heart_5" title="Five"><i class="material-icons">favorite</i></label>
-                                    <input type="radio" id="heart_4" name="like" value="4" />
-                                    <label for="heart_4" title="Four"><i class="material-icons">favorite</i></label>
-                                    <input type="radio" id="heart_3" name="like" value="3" />
-                                    <label for="heart_3" title="Three"><i class="material-icons">favorite</i></label>
-                                    <input type="radio" id="heart_2" name="like" value="2" />
-                                    <label for="heart_2" title="Two"><i class="material-icons">favorite</i></label>
-                                    <input type="radio" id="heart_1" name="like" value="1" />
-                                    <label for="heart_1" title="One"><i class="material-icons">favorite</i></label>
-                                </div>
-                                <span class="has-error">{{ errors[0] }}</span>
-                            </validation-provider>
-                        </form>
-                    </validation-observer>
-
-                </div>
-
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-primary btn-link btn-wd btn-lg"
-                    data-dismiss="modal">cancelar</button>
-                <button type="submit" form="formFilmeNota"
-                    class="btn btn-primary btn-link btn-wd btn-lg">avaliar</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-<movie-add-card :callback="fazerRequestFilmes"></movie-add-card>
+<categoria-add-card></categoria-add-card>
 
 <div class="row mb-5">   
     <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
-        <div class="row">
-            <div class="col-lg-10 col-sm-10">
+        <div class="row mb-3">
+            <div class="col-lg-9 col-sm-12">
                 <div class="form-group label-floating has-feedback">
                     <label class="control-label">nome do filme</label>
                           <input type="text"  placeholder="pesquisar..." class="form-control"  v-model="searchTerm" />
@@ -80,16 +16,20 @@ ViewBag.Title = "Início";
                     <i class="material-icons">search</i>
                     </span>
                   </div>
-            </div>
-            <div class="col-lg-2 col-sm-2">
-                <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" data-toggle="modal" data-target="#novoFilmeModal">
-                    <i class="material-icons">add_to_queue</i>
-                </button>
-            </div>
+            </div>            
         </div>
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="cmbCategorias">categorias</label>
+                    <select v-model="searchCategoria" class="form-control selectpicker" data-style="btn btn-link" id="cmbCategorias">
+                        <option v-for="categoria in categorias" :key="categoria.Id" v-bind:value="categoria.Id">{{categoria.Nome}}</option>
+                    </select>
+                </div> 
+            </div>
+            
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                       <input class="form-check-input" type="checkbox" id="chkFilmesAssistidos" v-model="searchAssistidos"> filmes assistidos 
@@ -99,59 +39,28 @@ ViewBag.Title = "Início";
                     </label>
                   </div>
             </div>
-            <div class="col-6">
 
-            </div>
         </div>
 
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#novoFilmeModal">
+                    <i class="material-icons">add_to_queue</i> filme
+                </button>
+                <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#novaCategoriaModal">
+                    <i class="material-icons">add_circle_outline</i> categoria
+                </button>
+            </div>
+        </div>
     </div>  
 </div>
 
-<transition-group v-if="listaFilmesFiltrados.length > 0" name="slide-fade" tag="div" >
-    
-    <div class="row" v-for="filme in listaFilmesFiltrados" :key="filme.Id">
-        <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
-            <div class="card">
-                <div class="card-header card-header-rose">
-                    <div class="card-icon">
-                        <i class="material-icons" v-if="diferencaDias(filme.DtAdicionado) >= -2">new_releases</i>
-                        <i class="material-icons" v-if="filme.Nota > 3">favorite</i>
-                        <i class="material-icons">hd</i>
-                        <i class="material-icons" v-if="filme.Assistido">visibility</i>
-                    </div>
-                </div>
-                <div class="card-body text-center">
-                    <h4> {{ filme.Nome }}</h4>
-                    <p class="card-text category"><strong>categoria(s):</strong>
-                            <span v-if="filme.Categorias.length > 0">{{  filme.Categorias | categorias-concat }}</span>
-                            <span v-else>esse filme não possuí categorias</span>
-                        </p>
-                    <p class="card-text" v-if="!!filme.Descricao"><strong>descrição:</strong> {{ filme.Descricao }}</p>   
-
-                    <div class="text-center card-avaliacao" v-if="filme.Nota > 0">
-                        <h4>avaliação:</h4>
-                        <i class="material-icons" v-for="i in filme.Nota">favorite</i>
-                    </div>                    
-                    <div class="text-center" v-else> 
-                        <h4> filme não avaliado</h4>
-                    </div>
-                    <br/>      
-                    <button type="button" class="btn btn-primary btn-round"  data-toggle="modal" data-target="#assistirModal"  v-bind:data-filme="filme.Id" v-bind:disabled="filme.Assistido">
-                        <i class="material-icons">play_circle_outline</i>
-                        assistir
-                    </button>
-                    <button type="button" class="btn btn-primary btn-round"  data-toggle="modal" data-target="#avaliarModal"  v-bind:data-filme="filme.Id" v-bind:disabled="filme.Nota > 0 || !filme.Assistido">
-                        <i class="material-icons">edit</i>avaliar
-                    </button>  
-
-                    <div class="card-footer text-muted"> {{ filme.DtAdicionado | from-now}} </div>
-                </div>
-            </div>
-        </div>  
-        <movie-avaliacao v-bind:filme="filme"></movie-avaliacao>  
-    </div>
+<transition-group v-if="listaFilmesFiltrados.length > 0" name="slide-fade" tag="div">   
+   <movie-card :filme="filme" v-for="filme in listaFilmesFiltrados" :key="filme.Id">
+   </movie-card>
 </transition-group>
-<transition v-else>
+
+<transition name="slide-fade" v-else>
     <div class="row">
         <div class="col-lg-8 offset-lg-2 col-sm-10 offset-sm-1">
             <div class="text-center">
@@ -162,11 +71,6 @@ ViewBag.Title = "Início";
     </div>
 </transition>
 
-
-
-
-
-
-    @section scripts{
+@section scripts{
     @Scripts.Render("~/bundles/index")
-    }
+}   

@@ -75,7 +75,7 @@ function validarForm(form, callback = undefined){
 }
 
 //retorna Promise
-async function  fazerRequest(url = "", metodo = REQUESTMETHOD, dados = {}) {
+async function  fazerRequest(url = "", metodo = REQUESTMETHOD, dados = Object) {
     var dados;
 
     if(metodo == 1){

@@ -33,6 +33,15 @@ namespace OurMovies.MoviePicker.MVC
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
                     "~/Content/js/login.js"));
 
+             bundles.Add(new ScriptBundle("~/bundles/aleatorio").Include(
+                    "~/Content/js/aleatorios.js"));
+
+             bundles.Add(new ScriptBundle("~/bundles/adicionarfilmes").Include(
+                    "~/Content/js/adicionarFilmes.js"));
+
+             bundles.Add(new ScriptBundle("~/bundles/adicionarcategorias").Include(
+                    "~/Content/js/adicionarCategorias.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                       "~/Content/js/main.js"));
 

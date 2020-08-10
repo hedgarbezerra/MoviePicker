@@ -16,10 +16,13 @@
                     <a href="@Url.Action("Index", "Home")" title="filmes" class="nav-link"><i class="material-icons">movie</i></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:;" title="adicionar filmes" class="nav-link"><i class="material-icons">add_to_queue</i></a>
+                    <a href="@Url.Action("Cadastrar", "Filmes")" title="adicionar filmes" class="nav-link"><i class="material-icons">add_to_queue</i></a>
                 </li>
                 <li class="nav-item">
-                    <a href="javascript:;" title="filme aleatório" class="nav-link"><i class="material-icons">shuffle</i></a>
+                    <a href="@Url.Action("Cadastrar", "Categorias")" title="filme aleatório" class="nav-link"><i class="material-icons">add_circle_outline</i></a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Aleatorio", "Filmes")" title="filme aleatório" class="nav-link"><i class="material-icons">shuffle</i></a>
                 </li>
                 <li class="dropdown nav-item">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">

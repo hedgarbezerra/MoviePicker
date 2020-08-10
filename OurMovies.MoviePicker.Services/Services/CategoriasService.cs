@@ -48,11 +48,6 @@ namespace OurMovies.MoviePicker.Services.Services
         {
             _repo = new CategoriasRepository(_contexto);
 
-            var categoriaCtx = _repo.Listar(x => x.Nome.Contains(categoria.Nome)).FirstOrDefault();
-
-            if (categoriaCtx != null)
-                throw new Exception("Categoria já cadastrada.");
-
             var novaCategoria = _repo.Inserir(categoria);
             _repo.Savechanges();
 
