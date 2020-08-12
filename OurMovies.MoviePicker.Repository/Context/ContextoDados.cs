@@ -1,5 +1,6 @@
 ﻿using OurMovies.MoviePicker.Domain.Models;
 using OurMovies.MoviePicker.Repository.Context.Configuration;
+using OurMovies.MoviePicker.Utils;
 using System.Data.Entity;
 using System.Linq;
 
@@ -7,10 +8,19 @@ namespace OurMovies.MoviePicker.Repository.Context
 {
     public class ContextoDados : DbContext
     {
+        
+        #if RELEASE
         public ContextoDados()
             : base("name=DbFilmes")
         {
         }
+#else
+    public ContextoDados()
+            : base(Helpers.GetRDSConnectionString())
+        {
+        }
+
+#endif
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             builder.Configurations.Add(new SenhaConfiguration());

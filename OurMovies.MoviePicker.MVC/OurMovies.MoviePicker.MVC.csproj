@@ -152,6 +152,7 @@
     <Content Include="Content\css\material-kit.css" />
     <Content Include="Content\css\material-kit.min.css" />
     <Content Include="Content\img\card-background.jpg" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\movie-gif.gif" />
     <Content Include="Content\img\nothing-gif.gif" />
     <Content Include="Content\img\peek-gif.gif" />
@@ -185,6 +186,7 @@
     <Content Include="Scripts\vue-spinners.umd.min.js" />
     <Content Include="Scripts\vue-toasted.min.js" />
     <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\vue.min.js" />
     <Content Include="Scripts\Vue\Components\CategoriaAddConfirm.js" />
     <Content Include="Scripts\Vue\Components\movieAddConfirm.js" />
     <Content Include="Scripts\Vue\Components\movieAssistir.js" />
