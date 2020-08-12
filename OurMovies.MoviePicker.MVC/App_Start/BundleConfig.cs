@@ -15,7 +15,7 @@ namespace OurMovies.MoviePicker.MVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/vue").Include(
-                      "~/Scripts/vue.js",
+                      "~/Scripts/vue.min.js",
                       "~/Scripts/vee-validate-locale-pt_Br.js",
                       "~/Scripts/vee-validate.full.min.js",
                       "~/Scripts/axios.min.js",
@@ -71,7 +71,7 @@ namespace OurMovies.MoviePicker.MVC
                      "~/Content/css/uikit-rtl.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/animatecss").Include(
                      "~/Content/css/animate.css"));

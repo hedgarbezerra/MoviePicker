@@ -12,11 +12,11 @@
     methods: {
         assistirFilme() {
             app.isLoading = true;
-            fazerRequest(`${window.location.origin}/api/Filmes/Assistir'`, REQUESTMETHOD.POST, this.filme).then(({ data, success, message }) => {
+            fazerRequest(`${window.location.origin}/api/Filmes/Assistir`, REQUESTMETHOD.POST, this.filme).then(({ data, success, message }) => {
                 toastMessage(message, TOASTMETHOD.SUCCESS, 'play_circle_outline');
                 this.filme.Assistido = true;
             }).catch(err => {
-                toastMessage(message, TOASTMETHOD.SHOW, 'notification_important');
+                toastMessage('Houve um erro ao marcar o filme como assistido.', TOASTMETHOD.SHOW, 'notification_important');
             }).finally(() => {
                 app.isLoading = false;
             })

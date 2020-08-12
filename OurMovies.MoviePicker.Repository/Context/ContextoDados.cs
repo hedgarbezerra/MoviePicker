@@ -9,18 +9,14 @@ namespace OurMovies.MoviePicker.Repository.Context
     public class ContextoDados : DbContext
     {
         
-        #if RELEASE
-        public ContextoDados()
-            : base("name=DbFilmes")
-        {
-        }
-#else
+        //public ContextoDados()
+        //    : base("name=DbFilmes")
+        //{
+        //}
     public ContextoDados()
             : base(Helpers.GetRDSConnectionString())
         {
         }
-
-#endif
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             builder.Configurations.Add(new SenhaConfiguration());
