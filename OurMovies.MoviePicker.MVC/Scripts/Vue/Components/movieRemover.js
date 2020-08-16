@@ -16,7 +16,7 @@
                 toastMessage(message, TOASTMETHOD.SUCCESS, 'play_circle_outline');
                 this.removerFilmeMain();
             }).catch(err => {
-                toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.SHOW, 'notification_important');
+                toastMessage(err.response.data.ExceptionMessage ?? 'Não foi possível remover o filme selecionado.', TOASTMETHOD.SHOW, 'notification_important');
             }).finally(() => {
                 app.isLoading = false;
             })

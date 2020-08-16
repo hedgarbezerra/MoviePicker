@@ -43,11 +43,11 @@
                     this.listaFilmesAdicionar = [];
                     this.limparForm();
                 }
-                else
+                elses
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
 
             }).catch(err => {
-                toastMessage('Não foi possível adiciona e no momento.', TOASTMETHOD.ERROR, 'error_outline');
+                toastMessage(err.response.data.ExceptionMessage ?? 'Não foi possível adicionar os filmes no momento.', TOASTMETHOD.ERROR, 'error_outline');
             })
             .finally(() =>{
                 this.isLoading = false;

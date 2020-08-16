@@ -73,7 +73,7 @@ namespace OurMovies.MoviePicker.Services.Services
 
         public Filme Cadastrar(Filme filme)
         {
-
+                
 
             var existeFilme = _repo.Listar(x => x.Nome.ToLower() == filme.Nome.ToLower()).Any();
 

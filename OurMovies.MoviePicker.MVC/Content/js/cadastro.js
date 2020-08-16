@@ -34,7 +34,7 @@
                 this.isLoading = false;
             }).catch(err => {
                 this.isLoading = false;
-                toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.ERROR, 'error_outline')
+                toastMessage(err.response.data.ExceptionMessage ?? 'Não foi possível concluir seu cadastro.', TOASTMETHOD.ERROR, 'error_outline')
             });
         }
     },

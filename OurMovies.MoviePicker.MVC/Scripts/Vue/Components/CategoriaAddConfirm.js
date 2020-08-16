@@ -33,7 +33,7 @@
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
 
             }).catch(err => {
-                toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.ERROR, 'error_outline');
+                toastMessage(err.response.data.ExceptionMessage ?? 'Houve um problema ao registrar o filme.', TOASTMETHOD.ERROR, 'error_outline');
             })
                 .finally(() => app.isLoading = false);
         }
