@@ -192,6 +192,7 @@
     <Content Include="Scripts\Vue\Components\movieAssistir.js" />
     <Content Include="Scripts\Vue\Components\movieAvaliacao.js" />
     <Content Include="Scripts\Vue\Components\movieCard.js" />
+    <Content Include="Scripts\Vue\Components\movieRemover.js" />
     <Content Include="Scripts\Vue\Filters\categoriasfilter.js" />
     <Content Include="Scripts\Vue\Filters\timefilters.js" />
     <Content Include="Web.config" />

@@ -1,4 +1,4 @@
-﻿Vue.component('movie-assistir', {
+﻿Vue.component('movie-remover', {
     props: {
         filme: {
             type: Object,
@@ -10,16 +10,20 @@
         }
     },
     methods: {
-        assistirFilme() {
+        removerFilme() {
             app.isLoading = true;
-            fazerRequest(`${window.location.origin}/api/Filmes/Assistir`, REQUESTMETHOD.POST, this.filme).then(({ data, success, message }) => {
+            fazerRequest(`${window.location.origin}/api/Filmes/Remover`, REQUESTMETHOD.POST, this.filme).then(({ data, success, message }) => {
                 toastMessage(message, TOASTMETHOD.SUCCESS, 'play_circle_outline');
-                this.filme.Assistido = true;
+                this.removerFilmeMain();
             }).catch(err => {
                 toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.SHOW, 'notification_important');
             }).finally(() => {
                 app.isLoading = false;
             })
+        },
+        removerFilmeMain(){
+            let index = app.listaFilmes.findIndex(x => x.Id == this.filme.Id);
+            app.listaFilmes.splice(index, 1);
         }
     },
     template: `
@@ -27,7 +31,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">deseja realmente assistir "{{filme.Nome}}"?</h4>
+          <h4 class="modal-title">deseja realmente remover "{{filme.Nome}}"?</h4>
         </div>
         <div class="modal-body">
             <span class="text-muted">pense bem...bom, você quem sabe...</span>
@@ -35,7 +39,7 @@
         </div>
         <div class="modal-footer justify-content-center">
             <button type="button" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal">cancelar</button>
-            <button type="button" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal" v-on:click="assistirFilme">assistir filme</button>
+            <button type="button" class="btn btn-primary btn-link btn-wd btn-lg" data-dismiss="modal" v-on:click="removerFilme">remover filme</button>
         </div>
       </div>
     </div>

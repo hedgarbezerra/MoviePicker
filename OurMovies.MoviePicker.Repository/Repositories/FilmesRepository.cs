@@ -2,9 +2,8 @@
 using OurMovies.MoviePicker.Repository.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OurMovies.MoviePicker.Repository.Repositories
 {
@@ -55,6 +54,13 @@ namespace OurMovies.MoviePicker.Repository.Repositories
                 filmeCtx.Nota = nota;
             }
         }
+        public void RemoverRelacionamentoSQL(Filme filme)
+        {
+            string sqlQuery = $@"DELETE FROM TB_FILMES_CATEGORIA WHERE REF_ID_FILME = {filme.Id}";
+
+            _context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.EnsureTransaction, sqlQuery);
+        }
+
         public List<Filme> ListarTodos()
         {
             _context.Configuration.ProxyCreationEnabled = false;

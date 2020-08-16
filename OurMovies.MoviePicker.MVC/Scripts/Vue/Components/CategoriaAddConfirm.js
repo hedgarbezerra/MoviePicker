@@ -33,7 +33,7 @@
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
 
             }).catch(err => {
-                toastMessage('Não foi possível adiciona esta categoria no momento.', TOASTMETHOD.ERROR, 'error_outline');
+                toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.ERROR, 'error_outline');
             })
                 .finally(() => app.isLoading = false);
         }

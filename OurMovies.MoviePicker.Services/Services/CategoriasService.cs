@@ -16,18 +16,19 @@ namespace OurMovies.MoviePicker.Services.Services
         public CategoriasService()
         {
             _contexto = new ContextoDados();
+            _repo = new CategoriasRepository(_contexto);
         }
 
         public List<Categoria> Listar()
         {
-            _repo = new CategoriasRepository(_contexto);
+            
 
             return _repo.ListarNoTracking().ToList();
         }
 
         public List<Categoria> Listar(string nomeCategoria = null)
         {
-            _repo = new CategoriasRepository(_contexto);
+            
 
             if(!string.IsNullOrEmpty(nomeCategoria))
                 return _repo.ListarNoTracking(x => x.Nome.Contains(nomeCategoria)).ToList();
@@ -35,18 +36,23 @@ namespace OurMovies.MoviePicker.Services.Services
                 return _repo.ListarNoTracking().ToList();
         }
 
-        public void Remover(int id)
+        public void Remover(Categoria categoria)
         {
-            _repo = new CategoriasRepository(_contexto);
-            var categoriaCtx = _repo.EncontrarPorId(id);
+            
+            _repo.RemoverRelacionamentoSQL(categoria);
+            _repo.Remover(categoria);
 
-            _repo.Remover(categoriaCtx);
             _repo.Savechanges();
         }
 
         public Categoria Cadastrar(Categoria categoria)
         {
-            _repo = new CategoriasRepository(_contexto);
+            
+
+            var categoriaExiste = _repo.Listar(x => x.Nome.ToLower() == categoria.Nome.ToLower()).Any();
+
+            if (categoriaExiste)
+                throw new Exception($"A categoria {categoria.Nome} já está cadastrada.");
 
             var novaCategoria = _repo.Inserir(categoria);
             _repo.Savechanges();
@@ -58,7 +64,7 @@ namespace OurMovies.MoviePicker.Services.Services
         {
             List<Categoria> filmesDaCategoria = new List<Categoria>();
 
-            _repo = new CategoriasRepository(_contexto);
+            
             stringCategorias = "";
 
             foreach (var categoria in categorias)
@@ -76,7 +82,7 @@ namespace OurMovies.MoviePicker.Services.Services
 
         public void Atualizar(string novoNome, int idCategoria)
         {
-            _repo = new CategoriasRepository(_contexto);
+            
 
             var categoriaCtx = _repo.EncontrarPorId(idCategoria);
 

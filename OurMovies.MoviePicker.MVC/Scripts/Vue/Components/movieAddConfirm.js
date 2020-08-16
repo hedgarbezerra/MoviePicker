@@ -42,7 +42,7 @@ Vue.component('movie-add-card', {
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
                 
             }).catch(err => {
-                toastMessage('Não foi possível adiciona este filme no momento.', TOASTMETHOD.ERROR, 'error_outline');
+                toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.ERROR, 'error_outline');
             })
             .finally(() => app.isLoading = false);
         },
@@ -95,10 +95,13 @@ Vue.component('movie-add-card', {
                                         </div>                                
                                     </validation-provider>
 
-                                    <div class="form-group">
-                                        <label for="txtDescricao" class="bmd-label-floating">descrição</label> 
-                                        <textarea class="form-control" id="txtDescricao" v-model="filme.descricao" rows="2"></textarea>
-                                    </div>
+                                    <validation-provider name="descrição" vid="txtDescricao" rules="max:255" v-slot="{ errors }">
+                                        <div class="form-group">
+                                            <label for="txtDescricao" class="bmd-label-floating">descrição</label> 
+                                            <textarea class="form-control" id="txtDescricao" v-model="filme.descricao" rows="2"></textarea>
+                                            <span class="has-error">{{ errors[0] }}</span>
+                                        </div>
+                                    </validation-provider>
 
                                     <div class="form-group">
                                         <label for="cmbCategorias">categorias</label>

@@ -36,6 +36,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
                 return InternalServerError(ex);
             }
         }
+
         [HttpPost]
         [Route("IncluirDiversos")]
         public IHttpActionResult CadastroFilmeMultiplos([FromBody] List<Filme> filmes)
@@ -61,13 +62,39 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         }
 
         [HttpPost]
+        [Route("Remover")]
+        public IHttpActionResult RemoverFilme([FromBody] Filme filme)
+        {
+            try
+            {
+                FilmesService service = new FilmesService();
+
+                var filmeCtx = service.GetFilme(filme);
+
+                service.RemoverFilme(filmeCtx);
+
+                return Ok(new
+                {
+                    data = filmeCtx,
+                    message = "Filme removido com sucesso.",
+                    success = true
+                });
+
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPost]
         [Route("ListarPorCategoria")]
         public IHttpActionResult ListarPorCategoria([FromBody] List<Categoria> categorias)
         {
             try
             {
                 CategoriasService service = new CategoriasService();
-                var listaFilmes = service.ListarPorCategoria(categorias, out string categoriasString);
+                var listaFilmes = service.ListarPorCategoria(categorias, out string categoriasString).OrderBy(x => x.Nome).ThenByDescending(x => x.DtAdicionado).ThenByDescending(x => x.DtAdicionado).ToList();
 
                 var response = new DefaultResponse<Categoria>
                 {
@@ -91,7 +118,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             try
             {
                 FilmesService service = new FilmesService();
-                var listaFilmes = service.ListarFilmes(assistido);
+                var listaFilmes = service.ListarFilmes(assistido).OrderBy(x => x.Nome).ThenByDescending(x => x.DtAdicionado).ToList();
                 var assistidoString = assistido ? "assistidos" : "não assistidos";
 
                 var response = new DefaultResponse<Filme>
@@ -117,11 +144,11 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             try
             {
                 FilmesService service = new FilmesService();
-                var listaFilmes = service.Listar();
+                var listaFilmes = service.Listar().OrderBy(x => x.Nome).ThenByDescending(x => x.DtAdicionado).ToList();
 
                 var response = new DefaultResponse<Filme>
                 {
-                    data = listaFilmes.OrderByDescending(x => x.DtAdicionado).ToList(),
+                    data = listaFilmes,
                     message = listaFilmes.Count > 0 ? "Filmes encontrados." : "Filmes não foram encontrados.",
                     success = true
                 };

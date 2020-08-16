@@ -66,14 +66,14 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         }
 
 
-        [HttpDelete]
-        [Route("Excluir")]
-        public IHttpActionResult ExcluirCategoria(int id)
+        [HttpPost]
+        [Route("Remover")]
+        public IHttpActionResult ExcluirCategoria(Categoria categoria)
         {
             try
             {
                 CategoriasService service = new CategoriasService();
-                service.Remover(id);
+                service.Remover(categoria);
 
                 var response = new DefaultResponse<Categoria>
                 {
@@ -96,7 +96,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             try
             {
                 CategoriasService service = new CategoriasService();
-                var categorias = service.Listar(nomeCategoria);
+                var categorias = service.Listar(nomeCategoria).OrderBy(x => x.Nome).ToList();
 
                 var response = new DefaultResponse<Categoria>
                 {

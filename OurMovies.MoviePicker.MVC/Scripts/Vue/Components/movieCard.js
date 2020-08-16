@@ -44,6 +44,10 @@
                 </button>
                 <button  type="button" class="btn btn-primary btn-round"  data-toggle="modal" :data-target="targetModalAvaliacao" v-bind:data-filme="filme.Id" v-bind:disabled="filme.Nota > 0 || !filme.Assistido">
                     <i class="material-icons">edit</i>avaliar
+                </button> 
+                <button type="button" class="btn btn-primary btn-round"  data-toggle="modal" :data-target="targetModalRemover" v-bind:data-filme="filme.Id" v-bind:disabled="filme.Assistido">
+                    <i class="material-icons">clear</i>
+                    remover
                 </button>  
 
                 <div class="card-footer text-muted"> {{ filme.DtAdicionado | from-now}} </div>
@@ -52,11 +56,15 @@
     </div>  
     <movie-avaliacao v-if="filme.Assistido && filme.Nota <= 0" v-bind:idRef="idModalAvaliacao" v-bind:filme="filme"></movie-avaliacao>  
     <movie-assistir v-if="!filme.Assistido" v-bind:idRef="idModalAssistir"  v-bind:filme="filme"></movie-assistir> 
+    <movie-remover v-if="!filme.Assistido" v-bind:idRef="idModalRemover"  v-bind:filme="filme"></movie-remover> 
 </div>`,
     mounted() { },
     computed:{
         idModalAvaliacao(){
             return `avaliarModal${this.filme.Id}`;
+        },
+        idModalRemover(){
+            return `removerModal${this.filme.Id}`;
         },
         idModalAssistir(){
             return `assistirModal${this.filme.Id}`;
@@ -66,6 +74,9 @@
         },
         targetModalAssistir(){
             return `#assistirModal${this.filme.Id}`;
+        },
+        targetModalRemover(){
+            return `#removerModal${this.filme.Id}`;
         }
     },
     beforeDestroy() {}

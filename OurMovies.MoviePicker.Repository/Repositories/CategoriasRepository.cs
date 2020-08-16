@@ -24,5 +24,12 @@ namespace OurMovies.MoviePicker.Repository.Repositories
 
             return objCtx;
         }
+        public void RemoverRelacionamentoSQL(Categoria categoria)
+        {
+            string sqlQuery = $@"DELETE FROM TB_FILMES_CATEGORIA WHERE REF_ID_CATEGORIA = {categoria.Id}";
+
+            _context.Database.ExecuteSqlCommand(System.Data.Entity.TransactionalBehavior.EnsureTransaction, sqlQuery);
+
+        }
     }
 }

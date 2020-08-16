@@ -16,11 +16,12 @@ namespace OurMovies.MoviePicker.Services.Services
         public FilmesService()
         {
             this._contexto = new ContextoDados();
+            _repo = new FilmesRepository(_contexto);
         }
 
         public List<Filme> ListarFilmes(string nomeFilme = "")
         {
-            _repo = new FilmesRepository(_contexto);
+
 
             var filmes = _repo.Listar(x => x.Nome.Contains(nomeFilme) || x.Categorias.Any(y => y.Nome == nomeFilme)).ToList();
 
@@ -29,7 +30,7 @@ namespace OurMovies.MoviePicker.Services.Services
 
         public List<Filme> ListarFilmes()
         {
-            _repo = new FilmesRepository(_contexto);
+
 
             var filmes = _repo.ListarNoTracking().ToList();
 
@@ -37,7 +38,7 @@ namespace OurMovies.MoviePicker.Services.Services
         }
         public List<Filme> Listar()
         {
-            _repo = new FilmesRepository(_contexto);
+
 
             var filmes = _repo.ListarTodos();
 
@@ -45,16 +46,39 @@ namespace OurMovies.MoviePicker.Services.Services
         }
         public List<Filme> ListarFilmes(bool filmeAssistido)
         {
-            _repo = new FilmesRepository(_contexto);
 
-            var filmes = _repo.ListarPorStatus(filmeAssistido); //_repo.Listar(x => x.Assistido == filmeAssistido).ToList();
+
+            var filmes = _repo.ListarPorStatus(filmeAssistido); 
 
             return filmes;
         }
 
+        public Filme GetFilme(Filme filme)
+        {
+
+
+            var filmeEncontrado = _repo.EncontrarPorId(filme.Id);
+
+            return filmeEncontrado;
+        }
+
+        public void RemoverFilme(Filme filme)
+        {
+
+
+            _repo.RemoverRelacionamentoSQL(filme);
+            _repo.Remover(filme);
+            _repo.Savechanges();
+        }
+
         public Filme Cadastrar(Filme filme)
         {
-            _repo = new FilmesRepository(_contexto);
+
+
+            var existeFilme = _repo.Listar(x => x.Nome.ToLower() == filme.Nome.ToLower()).Any();
+
+            if (existeFilme)
+                throw new Exception($"O filme {filme.Nome} já existe. Não é possível cadastrá-lo novamente.");
 
             var objCtx = _repo.Inserir(filme);
             _repo.Savechanges();
@@ -62,9 +86,10 @@ namespace OurMovies.MoviePicker.Services.Services
             return objCtx;
         }
 
+
         public void DarNotaFilme(int idFilme, int nota)
         {
-            _repo = new FilmesRepository(_contexto);
+
 
             _repo.DarNota(idFilme, nota);
             _repo.Savechanges();
@@ -72,8 +97,8 @@ namespace OurMovies.MoviePicker.Services.Services
 
 
         public void AssistirFilme(Filme filme)
-        {            
-            _repo = new FilmesRepository(_contexto);
+        {
+
 
             var filmeCtx = _repo.EncontrarPorId(filme.Id);
 

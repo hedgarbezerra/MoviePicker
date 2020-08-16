@@ -34,7 +34,7 @@
                 this.isLoading = false;
             }).catch(err => {
                 this.isLoading = false;
-                toastMessage('Não foi possível cadastrar você no momento.', TOASTMETHOD.ERROR, 'error_outline')
+                toastMessage(err.response.data.ExceptionMessage, TOASTMETHOD.ERROR, 'error_outline')
             });
         }
     },

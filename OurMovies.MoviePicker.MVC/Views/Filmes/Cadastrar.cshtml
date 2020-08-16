@@ -16,10 +16,13 @@
                         </div>                                
                     </validation-provider>
 
-                    <div class="form-group">
-                        <label for="txtDescricao" class="bmd-label-floating">descrição</label> 
-                        <textarea class="form-control" id="txtDescricao" v-model="filme.descricao" rows="2"></textarea>
-                    </div>
+                    <validation-provider name="descrição" vid="txtDescricao" rules="max:255" v-slot="{ errors }">
+                        <div class="form-group">
+                            <label for="txtDescricao" class="bmd-label-floating">descrição</label> 
+                            <textarea class="form-control" id="txtDescricao" v-model="filme.descricao" rows="2"></textarea>
+                            <span class="has-error">{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
 
                     <div class="form-group">
                         <label for="cmbCategorias">categorias</label>
