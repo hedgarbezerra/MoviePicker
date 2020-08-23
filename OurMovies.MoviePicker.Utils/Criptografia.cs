@@ -82,5 +82,29 @@ namespace OurMovies.MoviePicker.Utils
 
             return (hashValue == expectedHashString);
         }
+
+        public static string RandomPassword()
+        {
+            char[] chars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%&".ToCharArray();
+
+            byte[] data = new byte[4 * 8];
+
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                crypto.GetBytes(data);
+            }
+
+            StringBuilder result = new StringBuilder(8);
+
+            for (int i = 0; i < 8; i++)
+            {
+                var rnd = BitConverter.ToUInt32(data, i * 4);
+                var idx = rnd % chars.Length;
+
+                result.Append(chars[idx]);
+            }
+
+            return result.ToString();
+        }
     }
 }

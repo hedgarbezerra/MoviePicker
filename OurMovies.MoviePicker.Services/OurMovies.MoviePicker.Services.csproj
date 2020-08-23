@@ -31,8 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=2.8.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.8.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.9.1\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,10 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\INotification.cs" />
+    <Compile Include="Notification\EmailNotification.cs" />
+    <Compile Include="Notification\NotificationBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AutenticacaoService.cs" />
     <Compile Include="Services\CategoriasService.cs" />
     <Compile Include="Services\FilmesService.cs" />
+    <Compile Include="Services\SenhaRecuperacaoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OurMovies.MoviePicker.Domain\OurMovies.MoviePicker.Domain.csproj">
@@ -55,6 +70,13 @@
       <Project>{976F46FF-A9A9-4BBD-BC73-B05519EDD0E2}</Project>
       <Name>OurMovies.MoviePicker.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OurMovies.MoviePicker.Utils\OurMovies.MoviePicker.Utils.csproj">
+      <Project>{37A80BFE-5CF4-4154-9768-41947FEEDBE1}</Project>
+      <Name>OurMovies.MoviePicker.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -47,7 +47,7 @@
                     toastMessage(message, TOASTMETHOD.ERROR, 'error_outline');
 
             }).catch(err => {
-                toastMessage(err.response.data.ExceptionMessage ?? 'Não foi possível adicionar os filmes no momento.', TOASTMETHOD.ERROR, 'error_outline');
+                toastMessage(err.response.data.ExceptionMessage == undefined ? 'Não foi possível adicionar os filmes no momento.' : err.response.data.ExceptionMessage, TOASTMETHOD.ERROR, 'error_outline');
             })
             .finally(() =>{
                 this.isLoading = false;

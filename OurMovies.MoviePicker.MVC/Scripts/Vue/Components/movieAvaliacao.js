@@ -28,7 +28,7 @@
                     toastMessage(message, TOASTMETHOD.SHOW, 'notification_important');
                 }
             }).catch(err =>{
-                toastMessage(err.response.data.ExceptionMessage ?? 'Houve um problema ao registrar a avaliação.', TOASTMETHOD.SHOW, 'notification_important');
+                toastMessage(err.response.data.ExceptionMessage == undefined ? 'Houve um problema ao registrar a avaliação.' : err.response.data.ExceptionMessage , TOASTMETHOD.SHOW, 'notification_important');
             }).finally(() =>{
                 app.isLoading = false;
             })

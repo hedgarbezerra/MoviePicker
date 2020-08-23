@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\DTOContato.cs" />
     <Compile Include="DTO\DTOUsuario.cs" />
+    <Compile Include="Enum\TipoContato.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Filme.cs" />
     <Compile Include="Models\FilmesCategoria.cs" />

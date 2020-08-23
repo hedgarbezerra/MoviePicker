@@ -2,6 +2,7 @@
 using OurMovies.MoviePicker.Domain.Models;
 using OurMovies.MoviePicker.Repository.Context;
 using OurMovies.MoviePicker.Repository.Repositories;
+using OurMovies.MoviePicker.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,11 @@ namespace OurMovies.MoviePicker.Services.Services
         public AutenticacaoService()
         {
             _contexto = new ContextoDados();
+            repo = new SenhasAcessoRepository(_contexto);
         }
 
         public bool Autenticar(DTOUsuario usuario, out SenhaAcesso usuarioLogado)
         {
-            repo = new SenhasAcessoRepository(_contexto);
 
             return repo.Login(new SenhaAcesso
             {
@@ -33,23 +34,47 @@ namespace OurMovies.MoviePicker.Services.Services
 
         public SenhaAcesso Cadastrar(DTOUsuario usuario)
         {            
-            repo = new SenhasAcessoRepository(_contexto);
+            var usuarioCtx = repo.Inserir(new SenhaAcesso { Usuario = usuario.Usuario, Senha = usuario.Senha });
 
-            return repo.Inserir(new SenhaAcesso { Usuario = usuario.Usuario, Senha = usuario.Senha });
+            repo.Savechanges();
+
+            return usuarioCtx;
         }
         public List<SenhaAcesso> Listar(string usuario)
         {
-            repo = new SenhasAcessoRepository(_contexto);
-
             return repo.Listar(x => x.Usuario == usuario).ToList();
         }
 
         public List<SenhaAcesso> Listar()
         {
-            repo = new SenhasAcessoRepository(_contexto);
-
             return repo.Listar().ToList();
         }
+        public SenhaAcesso GetUsuario(string usuario)
+        {
+           return repo.Listar(x => x.Usuario == usuario).FirstOrDefault();
+        }
 
+        public void ResetarSenhaUsuario(DTOUsuario usuario, out string novaSenhaSaida)
+        {
+            var usuarioCtx = GetUsuario(usuario.Usuario);
+
+            if(usuarioCtx == null)
+            {
+                throw new Exception("Usuário não encontrado");
+            }
+
+            repo.ResetarSenha(usuarioCtx, out novaSenhaSaida);
+
+            repo.Savechanges();
+        }
+        public void AtualizarSenha(DTOUsuario usuario)
+        {
+            var usuarioCtx = this.GetUsuario(usuario.Usuario);
+
+            usuarioCtx.Senha = Criptografia.ComputeHash(usuario.Senha);
+
+            repo.Atualizar(usuarioCtx);
+            repo.Savechanges();
+        }
     }
 }

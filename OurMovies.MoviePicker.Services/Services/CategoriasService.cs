@@ -21,15 +21,12 @@ namespace OurMovies.MoviePicker.Services.Services
 
         public List<Categoria> Listar()
         {
-            
 
             return _repo.ListarNoTracking().ToList();
         }
 
         public List<Categoria> Listar(string nomeCategoria = null)
-        {
-            
-
+        {  
             if(!string.IsNullOrEmpty(nomeCategoria))
                 return _repo.ListarNoTracking(x => x.Nome.Contains(nomeCategoria)).ToList();
             else

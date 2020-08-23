@@ -84,5 +84,22 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("RecuperarSenha")]
+        public IHttpActionResult RecuperarSenha([FromBody] DTOContato contato)
+        {
+            try
+            {
+                SenhaRecuperacaoService recuperacaoService = new SenhaRecuperacaoService();
+
+                recuperacaoService.RecuperSenhaEmail(contato, Domain.Enum.TipoContato.EMAIL);
+                return Ok("Tudo certo");
+            }
+            catch (Exception ex)
+            {   
+                return InternalServerError(ex);
+            }
+        }
     }
 }

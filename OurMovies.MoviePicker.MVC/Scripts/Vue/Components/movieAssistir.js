@@ -16,7 +16,7 @@
                 toastMessage(message, TOASTMETHOD.SUCCESS, 'play_circle_outline');
                 this.filme.Assistido = true;
             }).catch(err => {
-                toastMessage(err.response.data.ExceptionMessage ?? 'Houve um problema ao assistir o filme.', TOASTMETHOD.SHOW, 'notification_important');
+                toastMessage(err.response.data.ExceptionMessage == undefined ? 'Houve um problema ao assistir o filme.' : err.response.data.ExceptionMessage , TOASTMETHOD.SHOW, 'notification_important');
             }).finally(() => {
                 app.isLoading = false;
             })
