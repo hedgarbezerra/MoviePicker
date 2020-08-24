@@ -10,6 +10,7 @@ namespace OurMovies.MoviePicker.Utils
     public static class Criptografia
     {
 
+        private static readonly RNGCryptoServiceProvider rngProvider = new RNGCryptoServiceProvider();
         public static string ComputeHash(string plainText, byte[] saltBytes = null)
         {
             if (saltBytes == null)
@@ -22,9 +23,8 @@ namespace OurMovies.MoviePicker.Utils
 
                 saltBytes = new byte[saltSize];
 
-                RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
 
-                rng.GetNonZeroBytes(saltBytes);
+                rngProvider.GetNonZeroBytes(saltBytes);
             }
 
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
@@ -83,20 +83,19 @@ namespace OurMovies.MoviePicker.Utils
             return (hashValue == expectedHashString);
         }
 
-        public static string RandomPassword()
+        public static string RandomPassword(int tamanhoSenha = 8)
         {
             char[] chars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%&".ToCharArray();
 
-            byte[] data = new byte[4 * 8];
+            byte[] data = new byte[4 * tamanhoSenha];
 
-            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
-            {
-                crypto.GetBytes(data);
-            }
+            
+            rngProvider.GetBytes(data);
+            
 
-            StringBuilder result = new StringBuilder(8);
+            StringBuilder result = new StringBuilder(tamanhoSenha);
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < tamanhoSenha; i++)
             {
                 var rnd = BitConverter.ToUInt32(data, i * 4);
                 var idx = rnd % chars.Length;

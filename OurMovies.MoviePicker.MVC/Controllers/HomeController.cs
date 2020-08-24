@@ -22,10 +22,15 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+
             return RedirectToAction("Login");
         }
 
-
+        [Authorize]
+        public ActionResult Senha()
+        {
+            return View();
+        }
         [AllowAnonymous]
         public ActionResult Login()
         {

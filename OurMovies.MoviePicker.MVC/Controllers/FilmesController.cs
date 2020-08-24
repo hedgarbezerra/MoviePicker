@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace OurMovies.MoviePicker.MVC.Controllers
 {
+    [Authorize]
     public class FilmesController : Controller
     {
         // GET: Filmes

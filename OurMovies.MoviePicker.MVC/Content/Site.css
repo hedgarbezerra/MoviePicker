@@ -83,6 +83,11 @@ button, input, optgroup, select, textarea{
   padding: 10px;
 }
 
+.link{
+  color: #9c27b0 !important;
+  cursor: pointer;
+}
+
 .container-login{
     padding-top: 15% !important;
 }

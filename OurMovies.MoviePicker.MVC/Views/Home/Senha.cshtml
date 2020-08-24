@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Alterar senha";
+}
+<div class="row container-login">
+    <div class="col-lg-5 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1 ol-xs-6 offset-xs-3">
+        <div class="card card-nav-tabs">
+            <div class="card-header text-center card-header-primary">
+                <h1>Alterar senha</h1>
+            </div>
+            <div class="card-body">
+                <validation-observer ref="formNovaSenha">
+                    <form id="formNovaSenha" v-on:submit.prevent="validarNovaSenha" novalidate>
+                        <validation-provider name="senha" vid="senhaCadastro" rules="required|min:8|max:20" v-slot="{ errors }">
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="senhaCadastro">senha</label>
+                                <input placeholder="sua senha" class="form-control" id="senhaCadastro" v-model="usuario.senha"
+                                       v-bind:type="verSenha ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}">
+                                <span class="form-control-feedback">
+                                    <i class="material-icons can-click" v-on:click="verSenha = !verSenha">{{ verSenha ? 'lock_open' : 'lock' }}</i>
+                                </span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
+
+
+                        <validation-provider name="senha" vid="senhaCadastroConfirmacao" rules="required|min:8|max:20|confirmed:senhaCadastro" v-slot="{ errors }">
+                            <div class="form-group label-floating has-feedback">
+                                <label class="control-label" for="senhaCadastro">confirmar senha</label>
+                                <input placeholder="confirmação" class="form-control" id="senhaCadastroConfirmacao" v-model="usuario.senhaConfirmacao" v-bind:type="verConfirmacao ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}">
+                                <span class="form-control-feedback">
+                                    <i class="material-icons can-click" v-on:click="verConfirmacao = !verConfirmacao">{{ verConfirmacao ? 'lock_open' : 'lock' }}</i>
+                                </span>
+                                <span class="has-error">{{ errors[0] }}</span>
+                            </div>
+                        </validation-provider>
+
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-primary btn-round float-right" type="submit">
+                                    alterar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </validation-observer>
+            </div>
+            <div class="card-footer text-center text-muted">
+                Nosso pequeno segredo
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section  scripts{
+    @Scripts.Render("~/bundles/alterarsenha")
+}

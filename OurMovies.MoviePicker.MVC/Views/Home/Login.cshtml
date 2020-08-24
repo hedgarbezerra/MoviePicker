@@ -2,8 +2,10 @@
 ViewBag.Title = "Conectar";
 Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
+<recuperar-senha></recuperar-senha>
+
 <div class="row container-login">
-    <div class="col-lg-4 offset-lg-4 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3">
+    <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3 col-md-8 offset-md-2">
         <div class="card card-nav-tabs">
             <div class="card-header text-center card-header-primary">
                 <h1>Conecte-se</h1>
@@ -39,10 +41,15 @@ Layout = "~/Views/Shared/_LayoutLogin.cshtml";
                         </validation-provider>
 
                         <div class="row">
-                            <div class="col s6">
+                            <div class="col">
+                                <a class="link" data-toggle="modal" data-target="#recuperarSenha">esqueceu a senha?</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <a href="@Url.Action("Cadastrar", "Home" )">cadastre-se</a>
                             </div>
-                            <div class="col s6">
+                            <div class="col">
                                 <button class="btn btn-primary btn-fab btn-fab-mini btn-round float-right"
                                     type="submit">
                                     <i class="material-icons">send</i>
@@ -60,5 +67,5 @@ Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 </div>
 
 @section scripts{
-@Scripts.Render("~/bundles/login")
+    @Scripts.Render("~/bundles/login")
 }

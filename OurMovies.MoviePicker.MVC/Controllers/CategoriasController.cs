@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace OurMovies.MoviePicker.MVC.Controllers
 {
+    [Authorize]
     public class CategoriasController : Controller
     {
         public ActionResult Cadastrar()

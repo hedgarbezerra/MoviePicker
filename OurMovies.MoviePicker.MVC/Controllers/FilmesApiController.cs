@@ -12,6 +12,7 @@ using System.Web.Http;
 namespace OurMovies.MoviePicker.MVC.Controllers
 {
     [RoutePrefix("api/Filmes")]
+    [Authorize]
     public class FilmesApiController : ApiController
     {
         [HttpPost]

@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,9 +58,13 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.9.1\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -148,9 +155,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\all.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\material-kit.css" />
     <Content Include="Content\css\material-kit.min.css" />
+    <Content Include="Content\css\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\css\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\css\webfonts\fa-solid-900.svg" />
     <Content Include="Content\img\card-background.jpg" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\movie-gif.gif" />
@@ -161,12 +172,25 @@
     <Content Include="Content\js\adicionarCategorias.js" />
     <Content Include="Content\js\adicionarFilmes.js" />
     <Content Include="Content\js\aleatorios.js" />
+    <Content Include="Content\js\alterarSenha.js" />
     <Content Include="Content\js\cadastro.js" />
     <Content Include="Content\js\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\css\material-kit.css.map" />
+    <Content Include="Content\css\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\css\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\css\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\css\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\css\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\css\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\css\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\css\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\css\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\css\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\css\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\css\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -193,6 +217,7 @@
     <Content Include="Scripts\Vue\Components\movieAvaliacao.js" />
     <Content Include="Scripts\Vue\Components\movieCard.js" />
     <Content Include="Scripts\Vue\Components\movieRemover.js" />
+    <Content Include="Scripts\Vue\Components\recuperarSenha.js" />
     <Content Include="Scripts\Vue\Filters\categoriasfilter.js" />
     <Content Include="Scripts\Vue\Filters\timefilters.js" />
     <Content Include="Web.config" />
@@ -214,10 +239,10 @@
     <Content Include="Views\Categorias\Cadastrar.cshtml" />
     <Content Include="Views\Filmes\Cadastrar.cshtml" />
     <Content Include="Views\Filmes\Aleatorio.cshtml" />
+    <Content Include="Views\Home\Senha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\js\classes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

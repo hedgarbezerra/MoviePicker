@@ -31,7 +31,11 @@ namespace OurMovies.MoviePicker.MVC
                       "~/Content/js/cadastro.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                    "~/Scripts/Vue/Components/recuperarSenha.js",
                     "~/Content/js/login.js"));
+
+             bundles.Add(new ScriptBundle("~/bundles/alterarsenha").Include(
+                    "~/Content/js/alterarSenha.js"));
 
              bundles.Add(new ScriptBundle("~/bundles/aleatorio").Include(
                     "~/Content/js/aleatorios.js"));
@@ -75,6 +79,9 @@ namespace OurMovies.MoviePicker.MVC
 
             bundles.Add(new StyleBundle("~/Content/animatecss").Include(
                      "~/Content/css/animate.css"));
+
+             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
+                     "~/Content/css/all.css"));
 
             bundles.Add(new StyleBundle("~/Content/materialdesign").Include(
                      "~/Content/css/material-kit.min.css"));

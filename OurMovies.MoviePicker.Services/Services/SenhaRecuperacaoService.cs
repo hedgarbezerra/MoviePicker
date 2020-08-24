@@ -1,5 +1,4 @@
-﻿using KabumCrawling.Services.Notification;
-using OurMovies.MoviePicker.Domain.DTO;
+﻿using OurMovies.MoviePicker.Domain.DTO;
 using OurMovies.MoviePicker.Domain.Enum;
 using OurMovies.MoviePicker.Domain.Models;
 using OurMovies.MoviePicker.Services.Notification;
@@ -15,18 +14,18 @@ namespace OurMovies.MoviePicker.Services.Services
 {
     public class SenhaRecuperacaoService
     {
-        public void RecuperSenhaEmail(DTOContato contato, TipoContato tipoContato = TipoContato.EMAIL)
+        public void RecuperSenha(DTOContato contato, INotification notification, TipoContato tipoContato = TipoContato.EMAIL)
         {
-            EmailNotification notification = new  EmailNotification(MimeKit.Text.TextFormat.Html);
+            //EmailNotification notification = new  EmailNotification(MimeKit.Text.TextFormat.Html);
             AutenticacaoService autenticacaoService = new AutenticacaoService();
 
 			autenticacaoService.ResetarSenhaUsuario(new DTOUsuario { Usuario = contato.Usuario }, out string novaSenha);
 
-            notification.Notificar(contato, $"Olá {contato.Nome}, aqui sua senha temporária.", MontaHTML(new SenhaAcesso { Usuario = contato.Usuario , Senha = novaSenha }));
+            notification.Notificar(contato, $"Olá {contato.Nome}, aqui sua senha temporária.", MontaHTML(new SenhaAcesso { Usuario = contato.Usuario , Senha = novaSenha }, contato.Nome));
            
         }
 
-        private string MontaHTML(SenhaAcesso usuario)
+        private string MontaHTML(SenhaAcesso usuario, string nome)
         {
             string html = @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional //EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 				<html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:v='urn:schemas-microsoft-com:vml'>
@@ -197,7 +196,7 @@ namespace OurMovies.MoviePicker.Services.Services
 				<!--[if mso]><table width='100%' cellpadding='0' cellspacing='0' border='0'><tr><td style='padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif'><![endif]-->
 				<div style='color:#ffffff;font-family:Poppins, Arial, Helvetica, sans-serif;line-height:1.5;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;'>
 				<div style='line-height: 1.5; font-size: 12px; color: #ffffff; font-family: Poppins, Arial, Helvetica, sans-serif; mso-line-height-alt: 18px;'>
-				<p style='font-size: 18px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 27px; margin: 0;'><span style='font-size: 18px;'>Olá, "+ usuario.Usuario + @"!</span></p>
+				<p style='font-size: 18px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 27px; margin: 0;'><span style='font-size: 18px;'>Olá, "+ nome + @"!</span></p>
 				<p style='font-size: 18px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 27px; margin: 0;'><span style='font-size: 18px;'>Sua nova senha temporária é: "+ usuario.Senha + @"</span></p>
 				<p style='font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;'> </p>
 				<p style='font-size: 14px; line-height: 1.5; word-break: break-word; text-align: center; mso-line-height-alt: 21px; margin: 0;'><em><span style='font-size: 11px;'>É importante que a senha seja atualizada.</span></em></p>
@@ -246,7 +245,6 @@ namespace OurMovies.MoviePicker.Services.Services
 				<!--[if (IE)]></div><![endif]-->
 				</body>
 				</html>";
-
 
             return html;
         }

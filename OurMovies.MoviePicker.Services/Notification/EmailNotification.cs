@@ -4,10 +4,8 @@ using OurMovies.MoviePicker.Domain.DTO;
 using OurMovies.MoviePicker.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 
-namespace KabumCrawling.Services.Notification
+namespace OurMovies.MoviePicker.Services.Notification
 {
     public class EmailNotification : NotificationBase
     {

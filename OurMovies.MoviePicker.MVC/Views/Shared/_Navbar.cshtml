@@ -1,7 +1,7 @@
 ﻿<nav class="navbar sticky-top navbar-expand-lg bg-info">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="javascript:;">Nossos filmes <i class="material-icons">favorite_border</i></a>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Nossos filmes <i class="material-icons">favorite_border</i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -24,6 +24,9 @@
                 <li class="nav-item">
                     <a href="@Url.Action("Aleatorio", "Filmes")" title="filme aleatório" class="nav-link"><i class="material-icons">shuffle</i></a>
                 </li>
+                <li class="nav-item">
+                    <a target="_blank" href="https://github.com/hedgarbezerra/MoviePicker" title="repositório git" class="nav-link"><i class="fab fa-lg fa-github"></i></a>
+                </li>
                 <li class="dropdown nav-item">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                         <i class="material-icons">settings</i>
@@ -32,6 +35,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <h6 class="dropdown-header">perfil</h6>
+                        <div class="dropdown-divider"></div>
+                        <a href="@Url.Action("Senha", "Home" )" class="dropdown-item">alterar senha</a>
                         <div class="dropdown-divider"></div>
                         <a href="@Url.Action("Logout", "Home" )" class="dropdown-item">desconectar</a>
                     </div>

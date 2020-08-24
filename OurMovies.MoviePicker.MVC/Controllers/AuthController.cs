@@ -1,6 +1,7 @@
 ﻿using OurMovies.MoviePicker.Domain.DTO;
 using OurMovies.MoviePicker.Domain.Models;
 using OurMovies.MoviePicker.MVC.Models;
+using OurMovies.MoviePicker.Services.Notification;
 using OurMovies.MoviePicker.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -92,13 +93,55 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             try
             {
                 SenhaRecuperacaoService recuperacaoService = new SenhaRecuperacaoService();
+                EmailNotification emailNotifier = new EmailNotification(MimeKit.Text.TextFormat.Html);
 
-                recuperacaoService.RecuperSenhaEmail(contato, Domain.Enum.TipoContato.EMAIL);
-                return Ok("Tudo certo");
+                recuperacaoService.RecuperSenha(contato, emailNotifier, Domain.Enum.TipoContato.EMAIL);
+
+                return Ok(new {
+                        message = "Senha resetada com sucesso, verifique sua caixa de e-mail.",
+                        data = new List<string>(),
+                        success = true
+                    });
             }
             catch (Exception ex)
-            {   
-                return InternalServerError(ex);
+            {
+                return Ok(new
+                {
+                    message = $"Oops, não foi possível resetar sua senha pelo seguinte motivo: {ex.Message}",
+                    data = new List<string>(),
+                    success = false
+                });
+            }
+        }
+
+        [HttpPost]
+        [Route("AtualizarSenha")]
+        public IHttpActionResult AtualizarSenha([FromBody] DTOUsuario usuario)
+        {
+            try
+            {
+                AutenticacaoService autenticacaoService = new AutenticacaoService();
+
+                string usuarioAtual = HttpContext.Current.User.Identity.Name;
+                usuario.Usuario = usuarioAtual;
+
+                autenticacaoService.AtualizarSenha(usuario);
+
+                return Ok(new
+                {
+                    message = "Senha alterada com sucesso.",
+                    data = new List<string>(),
+                    success = true
+                });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new
+                {
+                    message = $"Oops, não foi possível atualizar sua senha pelo seguinte motivo: {ex.Message}",
+                    data = new List<string>(),
+                    success = false
+                });
             }
         }
     }
