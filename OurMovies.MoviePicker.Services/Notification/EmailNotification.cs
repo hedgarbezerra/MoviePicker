@@ -55,6 +55,7 @@ namespace OurMovies.MoviePicker.Services.Notification
             {
                 using (var client = new SmtpClient())
                 {
+                    client.CheckCertificateRevocation = false;
                     client.Connect(_smtp, _smtpPort, true);
 
                     client.Authenticate(_email, _emailPassword);

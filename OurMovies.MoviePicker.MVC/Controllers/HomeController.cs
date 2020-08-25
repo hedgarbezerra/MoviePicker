@@ -1,5 +1,6 @@
 ﻿using OurMovies.MoviePicker.Domain.DTO;
 using OurMovies.MoviePicker.Domain.Models;
+using OurMovies.MoviePicker.Services.Notification;
 using OurMovies.MoviePicker.Services.Services;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,50 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             return RedirectToAction("Login");
         }
 
-        [Authorize]
-        public ActionResult Senha()
+        public ActionResult RecuperarSenha(string token)
         {
             return View();
         }
+
+        [HttpPost]
+        public JsonResult RecuperarSenha(DTOContato contato)
+        {
+            try
+            {
+                SenhaRecuperacaoService service = new SenhaRecuperacaoService();
+
+                EmailNotification emailNotifier = new EmailNotification(MimeKit.Text.TextFormat.Html);
+
+                string url = Url.Action("RecuperarSenha", "Home", null, protocol: Request.Url.Scheme);
+
+                service.RecuperarSenhaToken(contato, emailNotifier, url);
+
+                return Json(new
+                {
+                    success = true,
+                    message = $"E-mail de reset de senha enviado para {contato.Contato}",
+                    data = new List<string>()
+                });
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = ex.Message,
+                    data = new List<string>()
+                });
+            }
+
+        }
+
+        [Authorize]
+        public ActionResult AlterarSenha()
+        {
+            return View();
+        }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -64,7 +104,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
 
             SenhaAcesso usuarioLogado;
 
-            if(authService.Autenticar(usuario, out usuarioLogado))
+            if (authService.Autenticar(usuario, out usuarioLogado))
             {
                 FormsAuthentication.SetAuthCookie(usuarioLogado.Usuario, true);
 

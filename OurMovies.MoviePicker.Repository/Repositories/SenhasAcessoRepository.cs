@@ -27,7 +27,7 @@ namespace OurMovies.MoviePicker.Repository.Repositories
             if (usuario == null)
                 return false;
 
-            var logado = Criptografia.VerifyHash(senha.Senha, usuario.Senha);
+            var logado = Hashing.VerifyHash(senha.Senha, usuario.Senha);
 
             if (logado)
                 usuarioLogado = usuario;
@@ -42,7 +42,7 @@ namespace OurMovies.MoviePicker.Repository.Repositories
             if (existeUsuario != null)
                 throw new Exception("Usuário cadastrado previamente.");
 
-            obj.Senha = Criptografia.ComputeHash(obj.Senha);
+            obj.Senha = Hashing.ComputeHash(obj.Senha);
             obj.DtCriacao = DateTime.Now;
 
             var objCtx = _context.SenhasAcesso.Add(obj);
@@ -51,11 +51,11 @@ namespace OurMovies.MoviePicker.Repository.Repositories
         }
         public void ResetarSenha(SenhaAcesso usuario, out string novaSenha)
         {
-            novaSenha = Criptografia.RandomPassword();
+            novaSenha = Hashing.RandomPassword();
 
             var usuarioCtx = this.Listar(x => x.Usuario == usuario.Usuario).FirstOrDefault();
 
-            usuarioCtx.Senha = Criptografia.ComputeHash(novaSenha);
+            usuarioCtx.Senha = Hashing.ComputeHash(novaSenha);
         }
 
     }

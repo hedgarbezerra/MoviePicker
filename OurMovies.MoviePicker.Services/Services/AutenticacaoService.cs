@@ -33,7 +33,7 @@ namespace OurMovies.MoviePicker.Services.Services
         }
 
         public SenhaAcesso Cadastrar(DTOUsuario usuario)
-        {            
+        {
             var usuarioCtx = repo.Inserir(new SenhaAcesso { Usuario = usuario.Usuario, Senha = usuario.Senha });
 
             repo.Savechanges();
@@ -51,14 +51,14 @@ namespace OurMovies.MoviePicker.Services.Services
         }
         public SenhaAcesso GetUsuario(string usuario)
         {
-           return repo.Listar(x => x.Usuario == usuario).FirstOrDefault();
+            return repo.Listar(x => x.Usuario == usuario).FirstOrDefault();
         }
 
         public void ResetarSenhaUsuario(DTOUsuario usuario, out string novaSenhaSaida)
         {
             var usuarioCtx = GetUsuario(usuario.Usuario);
 
-            if(usuarioCtx == null)
+            if (usuarioCtx == null)
             {
                 throw new Exception("Usuário não encontrado");
             }
@@ -71,7 +71,7 @@ namespace OurMovies.MoviePicker.Services.Services
         {
             var usuarioCtx = this.GetUsuario(usuario.Usuario);
 
-            usuarioCtx.Senha = Criptografia.ComputeHash(usuario.Senha);
+            usuarioCtx.Senha = Hashing.ComputeHash(usuario.Senha);
 
             repo.Atualizar(usuarioCtx);
             repo.Savechanges();

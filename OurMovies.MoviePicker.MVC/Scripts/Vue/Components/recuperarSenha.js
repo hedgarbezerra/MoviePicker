@@ -13,7 +13,7 @@
                 Contato: this.contato.contato
             };
 
-            fazerRequest(`${window.location.origin}/api/Auth/AtualizarSenha`, REQUESTMETHOD.POST, usuarioRecuperacao).then(({ data, success, message }) => {
+            fazerRequest(`${window.location.origin}/api/Auth/RecuperarSenha`, REQUESTMETHOD.POST, usuarioRecuperacao).then(({ data, success, message }) => {
                 if (success) {
                     toastMessage(message, TOASTMETHOD.SUCCESS, 'check_circle_outline');
                     $(`#recuperarSenha`).modal('hide');
