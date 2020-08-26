@@ -33,7 +33,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
 
             SenhaRecuperacaoService recuperacaoService = new SenhaRecuperacaoService();
 
-            if (recuperacaoService.RecuperarSenhaValidarToken(token, out usuario))
+            if (!string.IsNullOrEmpty(token) && recuperacaoService.RecuperarSenhaValidarToken(token, out usuario))
             {
                 FormsAuthentication.SetAuthCookie(usuario.Usuario, true);
             }
