@@ -243,7 +243,6 @@
     <Content Include="Views\Filmes\Cadastrar.cshtml" />
     <Content Include="Views\Filmes\Aleatorio.cshtml" />
     <Content Include="Views\Home\AlterarSenha.cshtml" />
-    <Content Include="Views\Home\RecuperarSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

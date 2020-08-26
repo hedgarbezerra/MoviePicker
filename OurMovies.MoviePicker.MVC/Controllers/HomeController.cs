@@ -27,47 +27,21 @@ namespace OurMovies.MoviePicker.MVC.Controllers
             return RedirectToAction("Login");
         }
 
-        public ActionResult RecuperarSenha(string token)
+        public ActionResult AlterarSenha(string token)
         {
-            return View();
-        }
+            SenhaAcesso usuario = null;
 
-        [HttpPost]
-        public JsonResult RecuperarSenha(DTOContato contato)
-        {
-            try
+            SenhaRecuperacaoService recuperacaoService = new SenhaRecuperacaoService();
+
+            if (recuperacaoService.RecuperarSenhaValidarToken(token, out usuario))
             {
-                SenhaRecuperacaoService service = new SenhaRecuperacaoService();
-
-                EmailNotification emailNotifier = new EmailNotification(MimeKit.Text.TextFormat.Html);
-
-                string url = Url.Action("RecuperarSenha", "Home", null, protocol: Request.Url.Scheme);
-
-                service.RecuperarSenhaToken(contato, emailNotifier, url);
-
-                return Json(new
-                {
-                    success = true,
-                    message = $"E-mail de reset de senha enviado para {contato.Contato}",
-                    data = new List<string>()
-                });
-
+                FormsAuthentication.SetAuthCookie(usuario.Usuario, true);
             }
-            catch (Exception ex)
+            else if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                return Json(new
-                {
-                    success = false,
-                    message = ex.Message,
-                    data = new List<string>()
-                });
+                return RedirectToAction("Login");
             }
 
-        }
-
-        [Authorize]
-        public ActionResult AlterarSenha()
-        {
             return View();
         }
 

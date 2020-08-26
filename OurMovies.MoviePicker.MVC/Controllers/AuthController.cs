@@ -87,8 +87,8 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("RecuperarSenha")]
-        public IHttpActionResult RecuperarSenha([FromBody] DTOContato contato)
+        [Route("ResetarSenha")]
+        public IHttpActionResult ResetarSenha([FromBody] DTOContato contato)
         {
             try
             {
@@ -141,6 +141,40 @@ namespace OurMovies.MoviePicker.MVC.Controllers
                     message = $"Oops, não foi possível atualizar sua senha pelo seguinte motivo: {ex.Message}",
                     data = new List<string>(),
                     success = false
+                });
+            }
+        }
+
+        [HttpPost]
+        [Route("RecuperarSenha")]
+        public IHttpActionResult RecuperarSenha([FromBody] DTOContato contato)
+        {
+            try
+            {
+                SenhaRecuperacaoService service = new SenhaRecuperacaoService();
+
+                EmailNotification emailNotifier = new EmailNotification(MimeKit.Text.TextFormat.Html);
+
+                string url = $@"{Url.Content("~/")}/Home/AlterarSenha";
+                //Url.Action("RecuperarSenha", "Home", null, protocol: Request.Url.Scheme);
+
+                service.RecuperarSenhaGerarToken(contato, emailNotifier, url);
+
+                return Json(new
+                {
+                    success = true,
+                    message = $"E-mail de reset de senha enviado para {contato.Contato}",
+                    data = new List<string>()
+                });
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = ex.Message,
+                    data = new List<string>()
                 });
             }
         }

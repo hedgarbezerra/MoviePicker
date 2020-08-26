@@ -54,6 +54,12 @@ namespace OurMovies.MoviePicker.Services.Services
             return repo.Listar(x => x.Usuario == usuario).FirstOrDefault();
         }
 
+        public SenhaAcesso GetUsuario(int userId)
+        {
+            return repo.EncontrarPorId(userId);
+        }
+
+
         public void ResetarSenhaUsuario(DTOUsuario usuario, out string novaSenhaSaida)
         {
             var usuarioCtx = GetUsuario(usuario.Usuario);

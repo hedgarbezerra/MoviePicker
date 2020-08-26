@@ -32,7 +32,7 @@ namespace OurMovies.MoviePicker.Services.Services
 				throw new Exception("Usuário não encontrado na base.");
 
 		}
-		public void RecuperarSenhaToken(DTOContato contato, INotification notification, string urlCaminho)
+		public void RecuperarSenhaGerarToken(DTOContato contato, INotification notification, string urlCaminho)
 		{
 			AutenticacaoService autenticacaoService = new AutenticacaoService();
 
@@ -45,11 +45,40 @@ namespace OurMovies.MoviePicker.Services.Services
 			else
 				throw new Exception("Usuário não encontrado na base.");
 		}
+        public bool RecuperarSenhaValidarToken(string token, out SenhaAcesso usuario)
+        {
+			usuario = null;
 
-		private string EmailRecuperacao(SenhaAcesso usuario, string nome, string url)
+            if (!string.IsNullOrEmpty(token))
+            {
+				token = token.Replace(" ", "+");
+				string tokenDecrypted = Criptografia.Decrypt(token);
+
+				var arrValoresToken = tokenDecrypted.Split(';');
+
+				var userId = Int32.Parse(arrValoresToken[0]);
+				var validadeToken = DateTime.Parse(arrValoresToken[1]);
+
+				if(validadeToken > DateTime.Now && userId != 0)
+                {
+					AutenticacaoService autenticacaoService = new AutenticacaoService();
+
+					var usuarioCtx = autenticacaoService.GetUsuario(userId);
+					usuario = usuarioCtx;
+
+					return true;
+                }
+
+				return false;
+            }
+
+			return false;
+        }
+
+        private string EmailRecuperacao(SenhaAcesso usuario, string nome, string url)
 		{
 			string token = GerarToken(usuario);
-
+			 
 			string html = @"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional //EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 				<html xmlns='http://www.w3.org/1999/xhtml' xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:v='urn:schemas-microsoft-com:vml'>
 				<head>
@@ -276,7 +305,7 @@ namespace OurMovies.MoviePicker.Services.Services
 
 		private string GerarToken(SenhaAcesso usuario)
 		{
-			var tokenBase = $"{usuario.Usuario};{DateTime.Now.AddMinutes(30).ToString()}";
+			var tokenBase = $"{usuario.Id};{DateTime.Now.AddMinutes(30).ToString()}";
 
 			var token = Criptografia.Encrypt(tokenBase);
 
