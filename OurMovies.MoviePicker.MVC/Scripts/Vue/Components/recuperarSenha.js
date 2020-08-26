@@ -52,12 +52,12 @@
                         
                         <validation-observer ref="formRecuperarSenha">
                             <form class="form" name="formRecuperarSenha" id="formRecuperarSenha" v-on:submit.prevent="validaFormRecuperacao" novalidate>
-                                <p class="description text-center">Bota um filme ai!</p>
+                                <p class="description text-center">Preencha seus dados básicos</p>
                                 <div class="card-body">
                                     <validation-provider name="nome" vid="txtNome" rules="required" v-slot="{ errors }">
                                         <div class="form-group ">
                                             <label for="txtNome" class="bmd-label-floating">nome</label>                                    
-                                            <input type="text" class="form-control" id="txtNome" v-model="contato.nome"  v-bind:class="{'has-error': errors[0]}">
+                                            <input type="text" class="form-control" id="txtNome" v-model="contato.nome"  v-bind:class="{'has-error': errors[0]}"/>
                                             <span class="has-error">{{ errors[0] }}</span>
                                         </div>                                
                                     </validation-provider>
@@ -65,15 +65,15 @@
                                     <validation-provider name="usuário" vid="txtUsuario" rules="required" v-slot="{ errors }">
                                         <div class="form-group ">
                                             <label for="txtUsuario" class="bmd-label-floating">usuário</label>                                    
-                                            <input type="text" class="form-control" id="txtUsuario" v-model="contato.usuario"  v-bind:class="{'has-error': errors[0]}">
+                                            <input type="text" class="form-control" id="txtUsuario" v-model="contato.usuario"  v-bind:class="{'has-error': errors[0]}"/>
                                             <span class="has-error">{{ errors[0] }}</span>
                                         </div>                                
                                     </validation-provider>
 
-                                    <validation-provider name="e-mail" vid="txtContato" rules="max:255" v-slot="{ errors }">
+                                    <validation-provider name="e-mail" vid="txtContato" rules="max:255|required" v-slot="{ errors }">
                                         <div class="form-group">
                                             <label for="txtContato" class="bmd-label-floating">e-mail</label> 
-                                            <input type="text" class="form-control" id="txtContato" v-model="contato.contato" v-bind:class="{'has-error': errors[0]}"></input>
+                                            <input type="text" class="form-control" id="txtContato"  v-model="contato.contato" v-bind:class="{'has-error': errors[0]}" />
                                             <span class="has-error">{{ errors[0] }}</span>
                                         </div>
                                     </validation-provider>

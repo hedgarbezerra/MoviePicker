@@ -2,7 +2,7 @@
     ViewBag.Title = "Conectar";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
-<recuperar-senha :user=usuario.login></recuperar-senha>
+<recuperar-senha></recuperar-senha>
 
 <div class="row container-login">
     <div class="col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 ol-xs-6 offset-xs-3 col-md-8 offset-md-2">
@@ -17,9 +17,8 @@
                         <validation-provider name="usuário" vid="usuarioLogin" rules="required" v-slot="{ errors }">
                             <div class="form-group label-floating has-feedback">
                                 <label for="usuarioLogin">usuário</label>
-                                <input placeholder="seu usuário" class="form-control" id="usuarioLogin"
-                                       v-model="usuario.login" type="text" v-bind:class="{'has-error': errors[0]}"
-                                       minlength="6" maxlength="20">
+                                <input placeholder="seu usuário" class="form-control" id="usuarioLogin" v-model="usuario.login" type="text" 
+                                    v-bind:class="{'has-error': errors[0]}" minlength="6" maxlength="20" />
                                 <span class="form-control-feedback">
                                     <i class="material-icons">account_circle</i>
                                 </span>
@@ -30,9 +29,8 @@
                         <validation-provider name="senha" vid="senhaLogin" rules="required|min:8|max:20" v-slot="{ errors }">
                             <div class="form-group label-floating has-feedback">
                                 <label for="senhaLogin">senha</label>
-                                <input placeholder="sua senha" class="form-control" id="senhaLogin"
-                                       v-model="usuario.senha" v-bind:type="verSenha ? 'text' : 'password'"
-                                       v-bind:class="{'has-error': errors[0]}">
+                                <input placeholder="sua senha" class="form-control" id="senhaLogin" v-model="usuario.senha" 
+                                v-bind:type="verSenha ? 'text' : 'password'" v-bind:class="{'has-error': errors[0]}" />
                                 <span class="form-control-feedback">
                                     <i class="material-icons can-click" v-on:click="verSenha = !verSenha">{{ verSenha ? 'lock_open' : 'lock' }}</i>
                                 </span>
@@ -44,17 +42,18 @@
                             <div class="col">
                                 <a class="link" data-toggle="modal" data-target="#recuperarSenha">esqueceu a senha?</a>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <a href="@Url.Action("Cadastrar", "Home" )">cadastre-se</a>
-                            </div>
                             <div class="col">
                                 <button class="btn btn-primary btn-fab btn-fab-mini btn-round float-right"
                                         type="submit">
                                     <i class="material-icons">send</i>
                                 </button>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <a href="@Url.Action("Cadastrar", "Home" )">cadastre-se</a>
+                            </div>
+                            
                         </div>
                     </form>
                 </validation-observer>
