@@ -4,8 +4,7 @@ using System.Web.Optimization;
 namespace OurMovies.MoviePicker.MVC
 {
     public class BundleConfig
-    {
-        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
+    {        
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -52,12 +51,6 @@ namespace OurMovies.MoviePicker.MVC
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
                       "~/Content/js/index.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/nowuikit").Include(
-                      "~/Scripts/BootstrapUiKit/popper.min.js",
-                      "~/Scripts/BootstrapUiKit/bootstrap.min.js",
-                      "~/Scripts/BootstrapUiKit/now-ui-kit.min.js"
-                      ));
-
             bundles.Add(new ScriptBundle("~/bundles/vuecomponents")
                 .IncludeDirectory("~/Scripts/Vue/Components", "*.js"));
 
@@ -70,9 +63,6 @@ namespace OurMovies.MoviePicker.MVC
                    "~/Scripts/material-kit.min.js"
                    ));
 
-            bundles.Add(new StyleBundle("~/Content/uikit").Include(
-                     "~/Content/css/uikit.min.css",
-                     "~/Content/css/uikit-rtl.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Site.css"));

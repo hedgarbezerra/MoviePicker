@@ -21,6 +21,7 @@ namespace OurMovies.MoviePicker.MVC.Controllers
         {
             try
             {
+
                 CategoriasService service = new CategoriasService();
                 var objCtx = service.Cadastrar(categoria);
 

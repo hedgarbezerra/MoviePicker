@@ -92,6 +92,17 @@ button, input, optgroup, select, textarea{
     padding-top: 15% !important;
 }
 
+input.has-error {
+    background-size: 100%;
+    transition: 0.5s;
+    background-image: linear-gradient(0deg,#f44336 2px,rgba(244,67,54,0) 0),linear-gradient(0deg,#d2d2d2 1px,hsla(0,0%,82%,0) 0) !important;
+}
+
+.has-feedback .form-control-feedback {
+    color: var(--roxo) !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
 span.has-error{   
     font-size: 14px !important; 
     color: #F44336 !important;
@@ -104,16 +115,7 @@ span.has-error{
     cursor: pointer !important;
 }
 
-input.has-error{ 
-    background-size: 100%;
-    transition: 0.5s;
-    background-image: linear-gradient(0deg,#f44336 2px,rgba(244,67,54,0) 0),linear-gradient(0deg,#d2d2d2 1px,hsla(0,0%,82%,0) 0) !important;
-}
-.has-feedback .form-control-feedback {
-    color: var(--roxo) !important;
-    opacity: 1 !important;
-    pointer-events: all !important;
-}
+
 .card *i:not(){
     font-family: Poppins, Roboto;
 }

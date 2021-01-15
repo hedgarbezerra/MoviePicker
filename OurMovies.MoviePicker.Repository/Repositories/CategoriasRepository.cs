@@ -12,10 +12,7 @@ namespace OurMovies.MoviePicker.Repository.Repositories
     {
         public CategoriasRepository(ContextoDados contexto = null)
         {
-            if (contexto != null)
-                _context = contexto;
-            else
-                _context = new ContextoDados();
+            this._context = contexto != null ? contexto : new ContextoDados();
         }
         public override Categoria Inserir(Categoria obj)
         {
